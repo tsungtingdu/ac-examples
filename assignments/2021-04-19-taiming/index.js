@@ -20,8 +20,8 @@ const tickets=[]
 function drawWinner (players,prize) {
    
   const n = Math.floor(Math.random() * players.length)
-  const winner = players.splice(n,1)[0]
-  announceMsg(winner,prize)  
+  const winner = players.splice(n, 1)[0]
+  announceMsg(winner, prize)  
 }
 
 function announceMsg (winner, prize) {
@@ -29,20 +29,20 @@ function announceMsg (winner, prize) {
   function encodeName (name) {
     let hidden = ''
     let hiddenlength = name.length-2
-    for (i=0; i<hiddenlength; i++) {
+    for (let i = 0; i < hiddenlength; i++) {
       hidden += '*'
-}
-name=name.slice(0,2)+hidden
-return name   
-}
+    }
+    name = name.slice(0,2) + hidden
+    return name   
+  }
 
-function encodeEmail (email) {
-  let name = email.slice(0,email.indexOf('@'))
-  let emailname = email.slice(email.indexOf('@'),email.length)
-  let hidden_name = name.slice(0,3)
-  name = hidden_name+'...'+emailname
-  return name
-}
+  function encodeEmail (email) {
+    let name = email.slice(0, email.indexOf('@'))
+    let emailname = email.slice(email.indexOf('@'), email.length)
+    let hidden_name = name.slice(0,3)
+    name = hidden_name + '...' + emailname
+    return name
+  }
 
   console.log(`${winner.number} | ${encodeName(winner.name)} | ${encodeEmail(winner.email)} | ${prize}`)
 }
@@ -54,33 +54,33 @@ function encodeEmail (email) {
 // each player gets a lottery ticket
 // write your code here
 function getticket () {
-  let ticket =  ''
-   let char = ''
-   let num =  ''
-   let char_n = 2
-   let num_n = 4
+  let ticket = ''
+  let char = ''
+  let num = ''
+  let char_n = 2
+  let num_n = 4
    
-   for (i=0; i < char_n; i++) {
-     char += String.fromCharCode(Math.floor(Math.random() * (90-65+1))+65)
-   }
+  for (let i = 0; i < char_n; i++) {
+    char += String.fromCharCode(Math.floor(Math.random() * (90 - 65 + 1)) + 65)
+  }
 
-   for (i=0; i < num_n; i++) {
-     num += Math.floor(Math.random() * 10)
-   }  
-   ticket = char + num
-   //indexOf如果查找不到會給予-1,此處>=0表示如果存入陣列的彩券如有重複
-   //則再重新執行一次getticket()
-   //如沒重複則把產生的彩券存入陣列中
-   if (tickets.indexOf(ticket) >= 0){
-     return getticket()//遞迴
-   }else {
-     tickets.push(ticket)
-     return ticket 
-   }   
+  for (let i = 0; i < num_n; i++) {
+    num += Math.floor(Math.random() * 10)
+  }  
+  ticket = char + num
+  //indexOf如果查找不到會給予-1,此處>=0表示如果存入陣列的彩券如有重複
+  //則再重新執行一次getticket()
+  //如沒重複則把產生的彩券存入陣列中
+  if (tickets.indexOf(ticket) >= 0){
+    return getticket()//遞迴
+  } else {
+    tickets.push(ticket)
+    return ticket 
+  }   
     
 }
 //給予每人彩券號碼  
-for (let i=0; i < players.length; i++) {
+for (let i = 0; i < players.length; i++) {
   players[i]['number'] = getticket()
   
 }
@@ -92,6 +92,6 @@ drawWinner(players, '叁獎')
 // write your code here
 
 //用for迴圈給予沒有賜獎的人參加獎
-for (let i=0; i < players.length; i++) {
+for (let i = 0; i < players.length; i++) {
   announceMsg(players[i],'參加獎')
 }
