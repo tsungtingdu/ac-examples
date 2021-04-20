@@ -47,49 +47,57 @@ function addItem(text) {
 
 // MY CODE
 const doneList = document.querySelector("#my-todo-done");
-const main = document.querySelector("main")
+const main = document.querySelector("main");
 
 function inputTodo() {
   let inputValue = input.value;
 
-  if (inputValue.length > 0 && Number(inputValue) !== 0) {
+  if (inputValue.trim().length !== 0) {
     addItem(inputValue);
     input.value = "";
-  } 
+  } else {
+    alert("===Oops! 是不是沒輸入什麼呢?===");
+  }
 }
 
+function checkedTodo(todo) {
+  if (!todo.matches("label")) {
+    return;
+  }
+  const currentList = todo.matches(".checked") ? list : doneList;
+  todo.classList.toggle("checked");
+  todo.parentElement.remove();
+  currentList.appendChild(todo.parentElement);
+}
+
+function deleteTodo(todo) {
+  if (!todo.matches(".delete")) {
+    return;
+  }
+  todo.parentElement.remove();
+}
+
+function addListener() {
+  const allList = document.querySelectorAll("li");
+  allList.forEach((list) => {
+    list.addEventListener("click", function (event) {
+      let target = event.target;
+      deleteTodo(target);
+      checkedTodo(target);
+    });
+  });
+}
 
 addBtn.addEventListener("click", function () {
   inputTodo();
+  addListener();
 });
 
 input.addEventListener("keypress", function (event) {
-  if (event.code === 'Enter'){
-  inputTodo();
+  if (event.code === "Enter") {
+    inputTodo();
+    addListener();
   }
 });
 
-
-main.addEventListener("click", function (event) {
-  let target = event.target;
-  let parentElement = target.parentElement;
-  
-  if (target.classList.contains("delete")) {
-    console.log("1")
-    parentElement.remove();
-    return
-  } else if (target.tagName === "LABEL") {
-    console.log("2")
-    target.classList.toggle("checked");
-  }
-  
-  if (target.classList[0] === "checked") {
-    parentElement.remove();
-    doneList.appendChild(parentElement);
-    console.log("3")
-  } else if (target.classList[0] !== "checked") {
-    parentElement.remove();
-    list.appendChild(parentElement);
-    console.log("4")
-  }
-});
+addListener();
