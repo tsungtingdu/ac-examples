@@ -5,15 +5,15 @@ function createPlayer(name, hp, mp) {
     mp: mp,
     cure: function (point) {
       // write your code
-      if(magician.hp > 0){
+      if(this.hp > 0){
         console.log('Magician HP recovered!')
-        if(magician.mp >= 2 * point){
-          if(magician.hp + point <= magOriginHp){
-            magician.mp -= 2 * point
-            magician.hp += point
+        if(this.mp >= 2 * point){
+          if(this.hp + point <= magOriginHp){
+            this.mp -= 2 * point
+            this.hp += point
           }else{
-          magician.mp -= 2 * (magOriginHp - magician.hp)
-          magician.hp = magOriginHp
+          this.mp -= 2 * (magOriginHp - this.hp)
+          this.hp = magOriginHp
           }
         }else{
         console.log('You do not have enough power!')
@@ -21,19 +21,19 @@ function createPlayer(name, hp, mp) {
       }else{
         console.log('Sorry, You are already dead!')
       }
-      return magician
+      return this
     },
     attack: function (enemy) {
       // write your code
       let damage = Math.floor(Math.random() * 30) + 1
       console.log(`Warrior hit Magician.   Magician lose ${damage} hp.`)
       if(damage >= enemy.hp){
-        enemy.hp = 0
+        this.hp = 0
         console.log('Game Over!')
       }else{
         enemy.hp -= damage
       }
-      return magician
+      return enemy
     }
   }
 }
