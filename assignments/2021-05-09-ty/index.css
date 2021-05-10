@@ -1,0 +1,29 @@
+.navbar {
+  font-family: 'Oswald', sans-serif;
+}
+
+.card-text {
+  cursor: default;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+}
+
+.container .card-img-top {
+  cursor: pointer;
+}
+
+.container .card-img-top:hover {
+  opacity: 0.8;
+  transition: 300ms;
+}
+
+.modal-content, .modal-body {
+  font-family: 'Oswald', sans-serif;
+}
+
+.modal-body img {
+  width: 75%;
+  margin: auto;
+}
+
+
