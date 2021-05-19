@@ -1,0 +1,38 @@
+container {
+	margin: 30px auto;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+section {
+	padding: 5px;
+}
+w {
+	margin: 5px ;
+	padding: 0px 5px;
+	FONT-SIZE: x-large;
+	font-weight:bold;
+}
+.R {
+BACKGROUND-COLOR: rgba(255,0,0,0.8);
+}
+.G {
+BACKGROUND-COLOR:  rgba(0,255,0,0.8);
+}
+.B {
+BACKGROUND-COLOR: rgba(0,0,255,0.8);
+}
+.output {
+	padding: 0px 10px;
+}
+
+.Hex {
+	BACKGROUND-COLOR:  rgba(255,255,255,0.5);
+	FONT-SIZE: x-large;
+	font-weight:bold;
+	padding: 10px;
+}
+
+body {
+	BACKGROUND-COLOR: rgb(0,0,0);
+}
