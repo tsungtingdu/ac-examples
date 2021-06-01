@@ -1,0 +1,123 @@
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">新增一間新餐廳 <i class="fas fa-utensils"></i></h5>
+          {{> message}}
+          <hr>
+          <form action="/restaurants" method="POST">
+            <div class="form-group form-row">
+              <label for="name" class="col-md-4 col-form-label">
+                餐廳名稱
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name" class="form-control" placeholder="eg. 圓山飯店自助餐" required
+                  value="{{#if restaurantObject}}{{restaurantObject.name}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="name_en" class="col-md-4 col-form-label">
+                English Name
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" class="form-control" placeholder="eg. The Grand Hotel"
+                  value="{{#if restaurantObject}}{{restaurantObject.name_en}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="category" class="col-md-4 col-form-label">
+                餐廳類別
+              </label>
+              <div class="col-md-8">
+                <select class="form-control" name="category" required>
+                  <option value="" selected disabled>選擇類別</option>
+                  <option value="咖啡">咖啡</option>
+                  <option value="酒吧">酒吧</option>
+                  <option value="台式">台式</option>
+                  <option value="義式">義式</option>
+                  <option value="美式">美式</option>
+                  <option value="中東">中東</option>
+                  <option value="韓式">韓式</option>
+                  <option value="中式">中式</option>
+                  <option value="港式">港式</option>
+                  <option value="泰式">泰式</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="image" class="col-md-4 col-form-label">
+                餐廳圖片網址
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="image" class="form-control" placeholder="eg. https://i.imgur.com/8Bf3vjm.jpg"
+                  value="{{#if restaurantObject}}{{restaurantObject.image}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="location" class="col-md-4 col-form-label">
+                餐廳地址
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" class="form-control" placeholder="eg. 10461台北市中山區中山北路四段1號"
+                  value="{{#if restaurantObject}}{{restaurantObject.location}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="phone" class="col-md-4 col-form-label">
+                餐廳電話
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="phone" class="form-control" placeholder="eg. 02-28868888"
+                  value="{{#if restaurantObject}}{{restaurantObject.phone}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="google_map" class="col-md-4 col-form-label">
+                Google Map
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="google_map" class="form-control"
+                  placeholder="eg. https://goo.gl/maps/TMG7yFcgKs4PYMw49"
+                  value="{{#if restaurantObject}}{{restaurantObject.google_map}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="rating" class="col-md-4 col-form-label">
+                餐廳評價
+              </label>
+              <div class="col-md-8">
+                <input type="number" step="0.1" max="5" min="1" name="rating" class="form-control" placeholder="eg. 4.4"
+                  required value="{{#if restaurantObject}}{{restaurantObject.rating}}{{/if}}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="description" class="col-md-4 col-form-label">
+                餐廳描述
+              </label>
+              <div class="col-md-8">
+                <textarea class="form-control" name="description" rows="5"
+                  placeholder="eg. 匯集歷屆國宴菜色，兩人既可成行，分別在廣東菜系的金龍餐廳、江浙菜系的圓苑餐廳、圓山牛排館、台菜海鮮菜系的宴會廳(10人一桌，享獨立包廂)以及輕旅行住房專案，解鎖神秘的東密道。">{{#if restaurantObject}}{{restaurantObject.description}}{{/if}}</textarea>
+              </div>
+            </div>
+            <div class="form-group form-row d-flex justify-content-end">
+              <button class="btn btn-major mr-2" type="submit">儲存</button>
+              <a href="/">
+                <button class="btn btn-major" type="button">返回</button>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

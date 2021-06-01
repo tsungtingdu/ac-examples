@@ -1,0 +1,77 @@
+<header>
+  <!-- navigation -->
+  {{!-- <nav class="navbar navbar-light bg-secondary">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+        我的餐廳清單
+      </a>
+    </div>
+  </nav> --}}
+
+  <div class="banner"></div>
+</header>
+
+<!-- search bar -->
+<div class="container-sm search-bar">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner d-flex justify-content-between">
+      <form action="/searchsort">
+        <div class="input-group d-flex align-items-center">
+          <h5 class="mr-2">搜尋</h5>
+          <input type="text" name="keyword" value="{{keyword}}" class="form-control" placeholder="輸入餐廳、分類"
+            aria-label="Restaurant Name..." value="" aria-describedby="search-button">
+          <div class="input-group-append mr-3">
+            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+          </div>
+          <select id="sort" name="sort" class="form-control" onchange="this.form.submit()">
+            <option value="isNameAsc" disabled selected>排序</option>
+            <option value="isNameAsc" {{#if sortForHandlebars.isNameAsc}}selected{{/if}}>A -> Z</option>
+            <option value="isNameDesc" {{#if sortForHandlebars.isNameDesc}}selected{{/if}}>Z -> A</option>
+            <option value="isCategoryAsc" {{#if sortForHandlebars.isCategoryAsc}}selected{{/if}}>類別</option>
+            <option value="isRatingDesc" {{#if sortForHandlebars.isRatingDesc}}selected{{/if}}>評比</option>
+          </select>
+        </div>
+      </form>
+      <a href="/restaurants/new" class="btn btn-major ml-2" type="button"><i class="fas fa-plus"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- restaurant list -->
+<div class="container d-flex flex-wrap justify-content-start mt-5">
+  {{!-- ===== --}}
+  {{#if restaurants}}
+  {{#each restaurants}}
+  <a href="/restaurants/{{this._id}}" class="text-secondary">
+    <div class="card mb-3" id="card-of-index">
+      <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+      <div class="card-body p-3">
+        <h6 class="card-title mb-1">{{this.name}}</h6>
+
+        <div class="restaurant-category mb-1">
+          <i class="fas fa-utensils pr-2"></i> {{this.category}}
+        </div>
+
+        <span class="badge badge-pill badge-danger font-weight-normal">
+          {{this.rating}}
+          <i class="fas fa-star fa-xs"></i>
+        </span>
+
+      </div>
+      <div class="card-footer text-muted">
+        <div class="d-flex justify-content-end">
+          <a href="/restaurants/{{this._id}}/edit" class="btn btn-of-index mr-2"><i class="far fa-edit fa-lg"></i></a>
+          <form id="formForDelete" action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-of-index"><i class="far fa-trash-alt fa-lg"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </a>
+  {{/each}}
+  {{else}}
+  <p>抱歉，沒有 {{keyword}} 相關結果</p>
+  {{/if}}
+</div>
