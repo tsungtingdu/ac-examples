@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-end px-5 mx-5 mt-3">
+  <div class="me-1"><a href="/"><i class="fas fa-home"></i></a></div>
+</div>
+<div class="container">
+  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
+    <div class="row mb-3 mt-5">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Restaurant Name"
+          value="{{restaurant.name}}" required>
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant English Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name_en" name="name_en" placeholder="Restaurant English Name"
+          value="{{restaurant.name_en}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Category</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="category" name="category" placeholder="Restaurant Category"
+          value="{{restaurant.category}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Image</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="image" name="image" placeholder="Restaurant Image"
+          value="{{restaurant.image}}" required>
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Location</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="location" name="location" placeholder="Restaurant Location"
+          value="{{restaurant.location}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Phone</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Restaurant Phone"
+          value="{{restaurant.phone}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Google_map</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="google_map" name="google_map" placeholder="Restaurant Google_map"
+          value="{{restaurant.google_map}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Rating</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="rating" name="rating" placeholder="Restaurant Rating"
+          value="{{restaurant.rating}}">
+      </div>
+    </div>
+    <div class="row mb-3 mt-1">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Restaurant Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="description" name="description" placeholder="Restaurant Description"
+          value="{{restaurant.description}}" required>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mb-2">
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>
