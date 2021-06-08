@@ -1,7 +1,8 @@
 // ========== 宣告變數 ==========
 const BASE_URL = "https://lighthouse-user-api.herokuapp.com"
 const INDEX_URL = BASE_URL + "/api/v1/users/"
-const USERS_PER_PAGE = 12 
+const USERS_PER_PAGE = 12
+const searchArray = []
 const querySelectorObject = {
   //Panels
   panel: document.querySelector('#panel'),
@@ -21,10 +22,10 @@ const querySelectorObject = {
 
 // ========== Controller Layer ==========
 // 抓取使用者資料
-let userArray = [] //存放使用者資料
+const userArray = [] //存放使用者資料
 axios.get(INDEX_URL).then(function (response) {
   userArray.push(...response.data.results) //存入使用者資料
-  let firstPageUsers = userArray.slice(0, 12)
+  const firstPageUsers = userArray.slice(0, 12)
   renderPanel(firstPageUsers) // 渲染網頁Panel(前12位使用者)
   panelClick()
   paginator(userArray.length)
@@ -33,38 +34,39 @@ axios.get(INDEX_URL).then(function (response) {
 // Search Bar監聽器
 querySelectorObject.searchForm.addEventListener('submit', function onSearchBarClicked(event) {
   event.preventDefault()
+  // 關鍵字去掉前後的空白，並小寫
+  const keyword = querySelectorObject.searchResult.value.trim().toLowerCase()
+
   // 使用者體驗-輸入空白值時警告
-  if (!querySelectorObject.searchResult.value.trim().length) {
+  if (!keyword.length) {
     alert('Invalid search!')
   }
-  // 關鍵字去掉前後的空白，並小寫
-  let keyword = querySelectorObject.searchResult.value.trim().toLowerCase()
- 
-  const searchArray = []
-  // 符合搜尋資料的使用者，加入陣列
-  searchArray.push(...userArray.filter(user => user.name.toLowerCase().includes(keyword)))
-  searchArray.push(...userArray.filter(user => user.surname.toLowerCase().includes(keyword)))
-  // 去掉重複的元素
-  removeDuplicate(searchArray)
-  // 使用者體驗-搜尋找不到使用者資料時警告
+  // 使用者裡面有滿足name or surname符合搜尋關鍵字者，加入搜尋顯示的清單
+  const searchArray = userArray.filter(user => user.name.toLowerCase().includes(keyword) || user.surname.toLowerCase().includes(keyword))
+  // 搜尋不到使用者
   if (!searchArray.length) {
     alert('Couldn\'t find the user!')
   }
-  // 渲染網頁
-  renderPanel(searchArray)
+  // 搜尋後先顯示第一頁
+  const currentPageUsers = searchArray.slice(0, 12)
+  renderPanel(currentPageUsers)
+  // 更改paginator
+  paginator(searchArray.length)
+})
+
+// 監聽分頁器
+querySelectorObject.pagination.addEventListener('click', function onPaginatorClicked(event) {
+  let currentIndex = Number(event.target.dataset.page) * USERS_PER_PAGE
+  let dataArray = []
+  searchArray > 0 ? dataArray = searchArray : dataArray = userArray
+  let currentPageUsers = dataArray.slice(currentIndex, currentIndex + 12)
+  renderPanel(currentPageUsers)
 })
 
 
 // ========== Management Layer ==========
 // ========== 函式區 ==========
-//去除掉陣列裡重複的元素並排序
-function removeDuplicate(originArray) {
-  let searchArray = originArray.filter(function (element, index, self) {
-    return self.indexOf(element.id) === index;
-  })
-  return searchArray.sort()
-}
-// 渲染網頁panel
+// 渲染網頁panel-grid
 function renderPanel(array) {
   let rawHTML = ''
   array.forEach((item) => {
@@ -86,16 +88,18 @@ function renderPanel(array) {
     querySelectorObject.panel.innerHTML = rawHTML
   })
 }
+
+
 // 渲染modal
-function renderModal(id) {  
-  axios.get(id).then(function importData(response) {
-    let user = response.data
-    querySelectorObject.modalImage.innerHTML = `<img src="${user.avatar}" id="modal-user-avatar" alt="modal-avatar">`
-    querySelectorObject.modalName.innerHTML = `${user.name} ${user.surname}`
-    querySelectorObject.modalAge.innerHTML = `Age: ${user.age}`
-    querySelectorObject.modalNationality.innerHTML = `Currrently living : ${user.region}`
-    querySelectorObject.modalBirthday.innerHTML =`Birthday is : ${user.birthday}`
-    querySelectorObject.modalEmail.innerHTML = `Email: ${user.email}`
+function renderModal(url) {  
+  axios.get(url).then(function importData(response) {
+    const { avatar, name, surname, age, region, birthday, email } = response.data // 解構附值 destructuring assignment
+    querySelectorObject.modalImage.innerHTML = `<img src="${avatar}" id="modal-user-avatar" alt="modal-avatar">`
+    querySelectorObject.modalName.innerHTML = `${name} ${surname}`
+    querySelectorObject.modalAge.innerHTML = `Age: ${age}`
+    querySelectorObject.modalNationality.innerHTML = `Currrently living : ${region}`
+    querySelectorObject.modalBirthday.innerHTML =`Birthday is : ${birthday}`
+    querySelectorObject.modalEmail.innerHTML = `Email: ${email}`
   }).catch((err) => console.log(err))
 }
 
@@ -103,8 +107,8 @@ function renderModal(id) {
 function panelClick() {
   querySelectorObject.panel.addEventListener('click', function panelClick(event) {
     if (event.target.matches('.drink-button')) { //監聽modal
-      let id = INDEX_URL + event.target.dataset.id
-      renderModal(id)
+      let url = INDEX_URL + event.target.dataset.id
+      renderModal(url)
     } else if (event.target.matches('#add-to-favorite')) { //監聽favorite
       addToFavoritePerson(Number(event.target.dataset.id))
     }
@@ -113,10 +117,10 @@ function panelClick() {
 
 function addToFavoritePerson(id) {
   const list = JSON.parse(localStorage.getItem('user')) || []
-  const favoriteUser = userArray.find(user => user.id === id)
   if (list.some(user => user.id === id)) {
     return alert('User has already existed in the favorite page!')
-  }
+  } 
+  const favoriteUser = userArray.find(user => user.id === id)
   list.push(favoriteUser)
   localStorage.setItem('user', JSON.stringify(list))
 }
@@ -125,15 +129,8 @@ function addToFavoritePerson(id) {
 function paginator(users) {
   let pages = Math.ceil(users/USERS_PER_PAGE)
   let rawHTML = ''
-  for (let i=0; i<pages; i++) {
-    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-id="${i}">${i+1}</a></li>`
+  for (let i = 0; i < pages; i++) {
+    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i+1}</a></li>`
   }
   querySelectorObject.pagination.innerHTML = rawHTML
 }
-
-// 監聽分頁器
-querySelectorObject.pagination.addEventListener('click', function onPaginatorClicked(event) {
-  let currentIndex = Number(event.target.dataset.id)*USERS_PER_PAGE
-  let currentPageUsers = userArray.slice(currentIndex, currentIndex+12)
-  renderPanel(currentPageUsers)
-})

@@ -2,6 +2,8 @@
 const BASE_URL = "https://lighthouse-user-api.herokuapp.com"
 const INDEX_URL = BASE_URL + "/api/v1/users/"
 const USERS_PER_PAGE = 12
+let searchArray = []
+let page = 1
 const querySelectorObject = {
   //Panels
   panel: document.querySelector('#panel'),
@@ -39,40 +41,36 @@ querySelectorObject.panel.addEventListener('click', function panelClick(event) {
   }
 })
 
-// // Search Bar監聽器
-// querySelectorObject.searchForm.addEventListener('submit', function onSearchBarClicked(event) {
-//   event.preventDefault()
-//   // 使用者體驗-輸入空白值時警告
-//   if (!querySelectorObject.searchResult.value.trim().length) {
-//     alert('Invalid search!')
-//   }
-//   // 關鍵字去掉前後的空白，並小寫
-//   let keyword = querySelectorObject.searchResult.value.trim().toLowerCase()
+// Search Bar監聽器
+querySelectorObject.searchForm.addEventListener('submit', function onSearchBarClicked(event) {
+  event.preventDefault()
+  // 關鍵字去掉前後的空白，並小寫
+  const keyword = querySelectorObject.searchResult.value.trim().toLowerCase()
 
-//   const searchArray = []
-//   // 符合搜尋資料的使用者，加入陣列
-//   searchArray.push(...userArray.filter(user => user.name.toLowerCase().includes(keyword)))
-//   searchArray.push(...userArray.filter(user => user.surname.toLowerCase().includes(keyword)))
-//   // 去掉重複的元素
-//   removeDuplicate(searchArray)
-//   // 使用者體驗-搜尋找不到使用者資料時警告
-//   if (!searchArray.length) {
-//     alert('Couldn\'t find the user!')
-//   }
-//   // 渲染網頁
-//   renderPanel(searchArray)
-// })
+  // 使用者體驗-輸入空白值時警告
+  if (!keyword.length) {
+    alert('Invalid search!')
+  }
+  // 使用者裡面有滿足name or surname符合搜尋關鍵字者，加入搜尋顯示的清單
+  searchArray = userArray.filter(user => user.name.toLowerCase().includes(keyword) || user.surname.toLowerCase().includes(keyword))
+  // 搜尋不到使用者
+  if (!searchArray.length) {
+    alert('Couldn\'t find the user!')
+  }
+  // 更改paginator
+  paginator(searchArray.length)
+  renderPanel(getMovieByPage(1))
+})
+
+// 監聽分頁器
+querySelectorObject.pagination.addEventListener('click', function onPaginatorClicked(event) {
+  page = Number(event.target.dataset.page)
+  renderPanel(getMovieByPage(page))
+})
 
 
 // ========== Management Layer ==========
 // ========== 函式區 ==========
-//去除掉陣列裡重複的元素並排序
-// function removeDuplicate(originArray) {
-//   let searchArray = originArray.filter(function (element, index, self) {
-//     return self.indexOf(element.id) === index;
-//   })
-//   return searchArray.sort()
-// }
 
 function renderPanel(array) {
   let rawHTML = ''
@@ -111,24 +109,31 @@ function renderModal(id) {
 // 刪除收藏清單的使用者
 function deleteFavorite(id) {
   let index = userArray.findIndex(user => user.id === id)
+  let favoriteUserIndex = searchArray.findIndex(user => user.id === id)
   userArray.splice(index, 1)
-  renderPanel(userArray)
+  searchArray.splice(favoriteUserIndex, 1)
   localStorage.setItem('user', JSON.stringify(userArray))
+  if (Math.ceil(userArray.length/12) !== page) {
+    page--
+  }
+  paginator(userArray.length)
+  renderPanel(getMovieByPage(page))
 }
 
 // 計算分頁、分頁器
 function paginator(users) {
   let pages = Math.ceil(users / USERS_PER_PAGE)
   let rawHTML = ''
-  for (let i = 0; i < pages; i++) {
-    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-id="${i}">${i + 1}</a></li>`
+  for (let i = 1; i <= pages; i++) {
+    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`
   }
   querySelectorObject.pagination.innerHTML = rawHTML
 }
 
-// 監聽分頁器
-querySelectorObject.pagination.addEventListener('click', function onPaginatorClicked(event) {
-  let currentIndex = Number(event.target.dataset.id) * USERS_PER_PAGE
-  let currentPageUsers = userArray.slice(currentIndex, currentIndex + 12)
-  renderPanel(currentPageUsers)
-})
+// 回傳該分頁的資料陣列
+function getMovieByPage(currentpage) {
+  let startIndex = (currentpage - 1) * USERS_PER_PAGE // 切割起點
+  let endIndex = startIndex + 12  // 切割終點
+  let data = searchArray.length ? searchArray : userArray //判斷是放"所有資料的陣列"還是"搜尋的陣列"
+  return data.slice(startIndex, endIndex) //渲染網頁
+}
