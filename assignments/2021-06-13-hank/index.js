@@ -1,0 +1,138 @@
+const BASE_URL = "https://lighthouse-user-api.herokuapp.com";
+const INDEX_URL = "https://lighthouse-user-api.herokuapp.com/api/v1/users/";
+const users = [];
+
+const USERS_PER_PAGE = 16;
+let filteredUsers = [];
+
+const dataPanel = document.querySelector("#data-panel");
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#search-input");
+const paginator = document.querySelector("#paginator");
+
+function renderUserList(data) {
+    let rawHTML = "";
+    data.forEach((item) => {
+        rawHTML += `
+    <div class="col-sm-3">
+        <div class = "mb-2">
+            <img src="${item.avatar}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${item.name}</h5>
+                <button type="button" class="btn btn-primary btn-show-info" data-toggle="modal"
+                    data-target="#user-Modal" data-id = "${item.id}">More
+                </button>
+                 <button type="button" class="btn btn-primary btn-add-favorite"
+                     data-id = "${item.id}">Add
+                </button>
+            </div>
+        </div>
+    </div>
+        `;
+    });
+    dataPanel.innerHTML = rawHTML;
+}
+
+// 產生Modal 的內容函式，利用id為參數配對相應的資料
+function showUserModal(id) {
+    const modalTitle = document.querySelector("#user-modal-title");
+    const modalAvatar = document.querySelector("#user-modal-avatar");
+    const modalEmail = document.querySelector("#user-modal-email");
+    const modalAge = document.querySelector("#user-modal-age");
+    const modalGender = document.querySelector("#user-modal-gender");
+    const modalRegion = document.querySelector("#user-modal-region");
+    const modalDate = document.querySelector("#user-modal-date");
+    // Show API https://lighthouse-user-api.herokuapp.com/api/v1/users/id
+    axios.get(INDEX_URL + id).then((response) => {
+        //  console.log(response)
+        const data = response.data;
+        modalTitle.innerText = `${data.name}  ${data.surname}`;
+        modalAvatar.innerHTML = `<img src="${data.avatar}" class="card-img-top" alt="user-avatar">`;
+        modalEmail.innerHTML = `E-mail： ${data.email}`;
+        modalGender.innerText = `gender： ${data.gender}`;
+        modalAge.innerText = `Age： ${data.age}`;
+        modalRegion.innerText = `region： ${data.region}`;
+        modalDate.innerText = `birthday： ${data.birthday}`;
+    });
+}
+
+// 設定頁面中所顯示的資料筆數
+function getUsersByPage(page) {
+    const data = filteredUsers.length ? filteredUsers : users;
+    const startIndex = (page - 1) * USERS_PER_PAGE;
+    return data.slice(startIndex, startIndex + USERS_PER_PAGE);
+}
+
+// 計算總頁數
+function renderUserPage(amount) {
+    const numberOfPage = Math.ceil(amount / USERS_PER_PAGE);
+    let rawHTML = "";
+
+    for (let page = 1; page <= numberOfPage; page++) {
+        rawHTML += `
+  <li class="page-item"><a class="page-link" href="#" data-page=${page}>${page}</a></li>
+    `;
+    }
+    paginator.innerHTML = rawHTML;
+}
+
+// 監聽 data panel
+dataPanel.addEventListener("click", function onPanelClicked(event) {
+    // console.log(event)
+    if (event.target.matches(".btn-show-info")) {
+        showUserModal(Number(event.target.dataset.id));
+    } else if (event.target.matches(".btn-add-favorite")) {
+        addUser(Number(event.target.dataset.id))
+    }
+});
+
+// 分頁內容
+paginator.addEventListener('click', function onPaginatorClicked(event) {
+    if (event.target.tagName !== 'A') return
+    const page = Number(event.target.dataset.page)
+    renderUserList(getUsersByPage(page))
+})
+
+// 添加使用者
+function addUser(id) {
+    // console.log(id)
+    const list = JSON.parse(localStorage.getItem("addUsers")) || [];
+    const user = users.find((user) => user.id === id);
+    if (list.some((user) => user.id === id)) {
+        return alert("以新增聯絡人");
+    }
+    list.push(user);
+    localStorage.setItem("addUsers", JSON.stringify(list));
+}
+// 搜尋欄表單監聽
+searchForm.addEventListener("submit", function onSearchFormSubmitted(event) {
+    event.preventDefault();
+    const keyword = searchInput.value.trim().toLowerCase();
+    //錯誤處理：輸入空白字串
+    if (!keyword.length) {
+        return alert("請輸入有效字串！");
+    }
+    filteredUsers = users.filter((user) =>
+        user.name.toLowerCase().includes(keyword)
+    );
+    if (filteredUsers.length === 0) {
+        return alert(`您輸入的名稱：${keyword} 沒有符合條件的使用者`);
+    }
+    //重製分頁器
+    renderUserPage(filteredUsers.length);
+    //預設顯示第 1 頁的搜尋結果
+    renderUserList(getUsersByPage(1));
+    searchInput.value = "";
+});
+
+axios
+    .get(INDEX_URL)
+    .then((response) => {
+        users.push(...response.data.results);
+        // console.log(users)
+        renderUserPage(users.length); // 依照使用者的總數產生出分頁數量
+        renderUserList(getUsersByPage(1)); // 設定顯示的資料數後，將計算頁數的函式丟入renderUserList重新渲染畫面
+    })
+    .catch((error) => {
+        console.log(error);
+    });
