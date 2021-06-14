@@ -1,0 +1,150 @@
+header {
+  overflow: hidden;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .navbar-brand  {
+  color: #4592af;
+}
+
+.navbar .navbar-brand:hover {
+  color: #226089;
+}
+
+.navbar-create {
+  color: white;
+  border-radius: 8px;
+  border: #4592af;
+  background-color: 4592af;
+  width: 100px;            /*List按鈕大小*/
+  height: 40px;  
+  line-height: 20px;      /*文字垂直置中*/
+  text-align: center;     /*文字水平置中*/
+  font-size: medium;
+}
+
+.btn {
+  display:block; 
+  border-radius: 8px;
+  width: 70px;            /*List按鈕大小*/
+  height: 30px;  
+  line-height: 20px;      /*文字垂直置中*/
+  text-align: center;     /*文字水平置中*/
+}
+
+.CRUD {
+  padding-top: 1em;
+  justify-content: space-between;
+}
+
+.banner {
+  position: relative;
+  z-index: -1;
+  margin: -5px;
+  height: 360px;
+  background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
+  background-size: cover;
+  filter: blur(3px);
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.search-bar .search-bar-outer, .sort-bar {
+  margin: 0 ;
+  max-width: 500px;
+  background-color: #fce2cf;
+  border-radius: 8px;
+  padding: 20px 30px;
+  border: 0;
+  margin-top: -60px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar .search-bar-inner h4, .sort-bar h4 {
+  color: #9b4b4b;
+}
+
+.form-control::placeholder {
+  color: #aaaaaa;
+  font-size: 0.8rem;
+}
+
+.btn-major {
+  background-color: #9b4b4b;
+  color: white;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.card {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card img{
+  height: 180px;
+}
+
+.card-title{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.restaurant-category {
+  color: #666666;
+  font-size: 0.8rem;
+}
+
+.restaurant-show-title {
+  position: relative;
+  top: -100px;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.createRestaurant, .editRestaurant{
+  margin: 2em auto;
+  flex-flow: column nowrap;
+  width: 600px;
+}
+
+.input-group-text {
+  width: 150px;
+}
+
+
+@media screen and (max-width: 992px) {
+  
+  .card img{
+    height: 115px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  .restaurant-show-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  
+  .card img{
+    height: auto;
+  }
+  
+}
+
