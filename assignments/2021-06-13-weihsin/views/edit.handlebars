@@ -1,0 +1,67 @@
+<div class="edition">
+  <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
+    <div class="editRestaurant">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳名稱(必填) </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳名稱(必填)" name="name" value="{{ restaurant.name }}"
+          required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳英文名稱 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳英文名稱" name="name_en" value="{{ restaurant.name_en }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳分類 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳分類" name="category" value="{{ restaurant.category }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳圖片(網址) </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳圖片(網址)" name="image" value="{{ restaurant.image }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳地址(必填) </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳地址(必填)" name="location" value="{{ restaurant.location }}"
+          required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳電話 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳電話" name="phone" value="{{ restaurant.phone }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳google地圖 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳google地圖" name="google_map"
+          value="{{ restaurant.google_map }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳評分 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳評分" name="rating" value="{{ restaurant.rating }}">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"> 餐廳簡介 </span>
+        </div>
+        <input class="form-control" type="text" placeholder="餐廳簡介" name="description"
+          value="{{ restaurant.description }}">
+      </div>
+      <div class="input-group mb-3">
+        <button class="btn-primary btn-block" type="submit">確認修改</button>
+      </div>
+    </div>
+  </form>
+</div>
