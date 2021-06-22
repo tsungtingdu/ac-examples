@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <form method="POST" action="/records" class="needs-validation" novalidate>
+        <div class='row mb-4'>
+            <h6 class='col-md-4'>* is required field</h6>
+            <h4 class='col-md-8'>Add a new expense</h4>
+        </div>
+        <!---name -->
+        <div class="form-group form-row">
+          <label for="name" class="col-md-4 col-form-label">Name*</label>
+          <div class="col-md-8">
+            <input type="text" name="name" id="name" class="form-control" required></input>
+            <div class="invalid-feedback">
+              this field is required！
+            </div>
+          </div>
+        </div>
+        <!--Calendar-->
+        <div class="form-group form-row">
+          <!-- Date input -->
+          <label class="control-label col-md-4 col-form-label" for="date">Date*</label>
+          <div class='col-md-8'>
+            <input type='date' class="form-control" name="date" id='date' value="{{moment today format="YYYY-MM-DD"}}" style="width: auto;">
+            <div class="invalid-feedback">
+              this field is required！
+            </div>
+          </div>
+        </div>
+        <!--category-->
+        <div class="form-group form-row">
+          <label for="category" class="col-md-4 col-form-label">
+            Category*
+          </label>
+          <div class="col-md-8">
+            <select class='form-control' id="category" name='category'>
+              {{#each category}}
+              <option value='{{this.name}}'/>
+                {{this.name}}</option>
+              {{/each}}
+            </select>
+            <div class="invalid-feedback">
+              this field is required！
+            </div>
+          </div>
+        </div>
+        <!--Amount-->
+        <div class="form-group form-row">
+          <label for="amount" class="col-md-4 col-form-label">Amount*</label>
+          <div class="col-md-8">
+            <input type="number" name="amount" id="amount" class="form-control" min='0' step='1' required></input>
+            <div class="invalid-feedback">
+              this field is required！
+            </div>
+          </div>
+        </div>
+        <div class='row'>
+          <label for="phone" class="col-md-4 col-form-label"></label>
+          <div class='col-md-8'>
+            <button class="btn btn-primary" type="submit" id="submit" style="width: 100%;">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+</script>
