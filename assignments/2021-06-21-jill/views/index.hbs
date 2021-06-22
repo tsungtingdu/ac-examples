@@ -1,0 +1,115 @@
+<div class="row justify-content-center">
+  {{!-- Filter option --}}
+  <div class="col-12 col-lg-6 mt-4">
+    <form>
+      <div class="form-group">
+        <select name="filterBy" id="inputFilter" class="form-control" onchange="submit();">
+          <option disabled selected>選擇類別</option>
+          {{#each categories}}
+          <option value="{{this.name}}" name="{{this.name}}" {{#if (eq ../filterBy this.name)}} selected {{/if}}>
+            {{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </form>
+  </div>
+
+  {{!-- Total Amount --}}
+  <div class="col-12 my-4">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-lg-2">
+        <h5>總金額：</h5>
+      </div>
+      <div class="col-12 col-lg-4">
+        <h1 class="text-success">$ {{ totalAmount }}</h1>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Record Details --}}
+  <div class="col-12 col-lg-8 mt-4">
+    <div class="data-panel">
+      <ul class="list-group list-group-flush">
+        {{#each records}}
+        <li class="list-group-item">
+          <div class="row d-flex align-items-center">
+            <div class="col-2 col-sm-2 d-flex justify-content-center align-items-center">
+              <i class="{{this.icon}} fa-2x" style="color: #80e6e8; "></i>
+            </div>
+            <div class="col-8 col-sm-6">
+              <p class="record-name" style="font-size: 1.5em;">{{this.name}}</p>
+              <small class="record-date">{{this.date}}</small>
+            </div>
+            <div class="col-2 col-sm-2 d-flex justify-content-center align-items-center">
+              <p class="record-amount" style="font-size: 1.3em;">{{this.amount}}</p>
+            </div>
+            <div class="col-12 col-sm-2 text-center buttons">
+              <a class="btn btn-primary m-1" href="./expenses/{{this._id}}/edit">修改</a>
+              <!-- Button trigger modal -->
+              <button id="delete-btn" type="button" class="btn btn-danger m-1 delete-btn" data-toggle="modal"
+                data-target="#staticBackdrop" data-id="{{this._id}}" data-name="{{this.name}}" data-date="{{this.date}}"
+                data-amount="{{this.amount}}">刪除</button>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="row justify-content-center mt-4 create-button">
+      <a class="btn btn-info btn-lg my-5" style="width:240px;" href="./expenses/new">新增支出</a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">確認刪除此筆紀錄：</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li id="modal-body-date"></li>
+          <li id="modal-body-name"></li>
+          <li id="modal-body-amount"></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+        <form id="delete-submit" action="" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-danger m-1">刪除</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal delete -->
+<script>
+  const dataPanel = document.querySelector('.data-panel')
+  const deleteSubmit = document.querySelector('#delete-submit')
+
+  const modalBodyDate = document.querySelector('#modal-body-date')
+  const modalBodyName = document.querySelector('#modal-body-name')
+  const modalBodyAmount = document.querySelector('#modal-body-amount')
+
+  dataPanel.addEventListener('click', function deleteButtonClicked() {
+    if (event.target.matches('#delete-btn')) {
+      const id = event.target.dataset.id
+      const name = event.target.dataset.name
+      const date = event.target.dataset.date
+      const amount = event.target.dataset.amount
+
+      modalBodyDate.innerHTML = `日期: ${date}`
+      modalBodyName.innerHTML = `名稱: ${name}`
+      modalBodyAmount.innerHTML = `金額: ${amount}`
+      deleteSubmit.action = `./expenses/${id}?_method=DELETE`
+    }
+  })
+</script>
