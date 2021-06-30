@@ -1,0 +1,68 @@
+body {
+  background-color: SeaShell;
+}
+
+.container {
+  margin: 10% auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.guide {
+  position: fixed;
+  top: 3vh;
+  left: 4vw;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  color: white;
+  background-color: RosyBrown;
+  opacity: 0%;
+  border-radius: 0.25rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  transition: opacity 0.5s ease-in;
+}
+
+.guide.visible {
+  opacity: 85%;
+}
+
+.section {
+  background-color: snow;
+  min-width: 360px;
+  padding: 1.5rem;
+  margin: 1.75rem;
+  border-radius: 0.5rem;
+  opacity: 85%;
+/*   CSS Scan shadow example #1*/
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.section:hover {
+  animation: zoom 0.5s ease-in-out;
+}
+
+@keyframes zoom {
+  0% {transform: scale(1)}
+  30% {transform: scale(0.75)}
+  40% {transform: scale(1.22)}
+  60% {transform: scale(0.8)}
+  85% {transform: scale(1.17)}
+  100% {transform: scale(1)}
+}
+
+.checked {
+  color: #ccc;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.fa {
+  margin: 0 5px;
+  color: #bbb;
+}
+
+li>label[for='todo'] {
+  width: 210px;
+}
