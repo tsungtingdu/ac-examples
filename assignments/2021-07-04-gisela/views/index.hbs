@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row justify-content-center">
+      <h1>URL Shortener</h1>
+    </div>
+    <div class="row justify-content-center">
+      <img class="mt-1 mb-3" src="../public/a14_icon.jpg" alt="link icon" width="300px" height="270px">
+    </div>
+    <div>
+      <form action="/shorten">
+        <div class="mt-5">
+          <input type="url" name="originUrl" class="form-control mb-1" placeholder="Input URL here"
+            aria-label="Origin Url" value="{{originUrl}}" width="1000px" required>
+          <div class="row justify-content-center">
+            <button class="btn btn-outline-primary btn-sm mt-3 col-4" type="submit" id="short-button">
+              <h4>Shorten</h4>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

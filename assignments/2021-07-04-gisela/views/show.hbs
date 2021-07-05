@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row justify-content-center">
+      <h1>URL Shortener</h1>
+    </div>
+    <div class="row justify-content-center">
+      <img class="mt-1 mb-3" src="../public/a14_icon.jpg" alt="link icon" width="300px" height="270px">
+    </div>
+    <div>
+      <div class="mt-5">
+        <h3>Success! Please use this link:</h3>
+        <h4><a href="{{originUrl}}" id="copyText">https://{{host}}/{{shorten}}</a></h4>
+        <div class="row justify-content-center">
+          <input type="button" class="btn btn-primary mt-3 col-4" id="copyBtn" onclick="copyLink()"
+            data-toggle="tooltip" title="Copy to clipboard" value="Copy" style="font-size: 24px; font-weight: 700"
+            readonly />
+          <script>
+            function copyLink() {
+              const copyText = document.getElementById("copyText")
+              let selection = window.getSelection()
+              let range = document.createRange()
+              range.selectNodeContents(copyText)
+              selection.removeAllRanges()
+              selection.addRange(range)
+              document.execCommand('copy')
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
