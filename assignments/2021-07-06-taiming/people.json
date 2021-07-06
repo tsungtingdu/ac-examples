@@ -1,0 +1,23 @@
+{
+  "target": {
+    "engineer": {
+      "id": "engineer",
+      "title": "工程師",
+      "img": "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5668/angry-developer.jpg",
+      "task":["加個按鈕","加新功能","切個版", "改一點 code"]
+    },
+    "designer": {
+      "id": "designer",
+      "title": "設計師",
+      "img": "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5667/angry-designer.jpg",
+      "task":["畫一張圖", "改個 logo","順便幫忙設計一下","隨便換個設計"]
+    },
+    "entrepreneur": {
+      "id": "entrepreneur",
+      "title": "創業家",
+      "img": "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5669/angry-founder.jpg",
+      "task":["週末加班", "要能賺錢","想個 business model","找 VC 募錢"]
+    }    
+  },
+  "phrase":["很簡單","很容易","很快","很正常","沒問題的","辦不到嗎","很困難嗎"]
+}
