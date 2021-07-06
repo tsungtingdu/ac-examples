@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class=" mx-auto mt-5 mb-5">
+      <h1 class="text-white">你想對誰說幹話?</h1>
+    </div>
+  </div>
+  <div class="container">
+    <form method="POST" action="/">
+      <div class="row">
+        {{#each targets}}
+        <div class="col-lg-4 col-12">
+          <div class="card" style="width: 18rem;">
+            <img src="{{this.image}}" class="card-img-top" style="height: 200px;" alt="{{this.title}}">
+            <div class="card-body mx-auto">
+
+              <div class="input-group">
+                <div class="input-group-text">
+                  <input type="radio" name="job" id="{{this.id}}" value="{{this.id}}"
+                    aria-label="Radio button for following text input">
+                </div>
+              </div>
+              <label for="{{this.id}}">{{this.title}}</label>
+            </div>
+
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-4">
+      <button type="submit" id="submit" style="margin-left: 12vw;" class="btn btn-primary mt-5 ">產生幹話</button>
+    </div>
+    <div class="col-lg-8 col-8">
+      <textarea id="language-post" name="" class="mt-5 form-control" cols="20" rows="5">{{language}}</textarea>
+
+
+    </div>
+  </div>
+  </form>
+</div>
+{{#if options.job}}
+<script>
+  document.querySelector(`input[value="{{options.job}}"]`).checked = true
+</script>
+{{/if}}
