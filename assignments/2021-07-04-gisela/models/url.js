@@ -8,7 +8,8 @@ const urlSchema = new Schema({
   },
   shorten: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   }
 })
 
