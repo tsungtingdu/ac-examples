@@ -31,10 +31,6 @@ header {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.create {
-  font-size: 1.5rem;
-}
-
 .search-bar .search-bar-inner h4 {
   color: #9b4b4b;
 }
