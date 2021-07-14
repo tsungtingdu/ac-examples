@@ -1,0 +1,83 @@
+<div class="col-12 col-lg-10 col-xl-8 mx-auto my-5">
+  <form action="/restaurants" method="POST">
+    <div class="form-group form-row">
+      <label for="name" class="col-md-4 col-form-label">
+        Restaurant Name
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="name" class="form-control" id="name" placeholder="Sababa 沙巴巴中東美食" required>
+        <div class="invalid-feedback">
+          Please provide restaurant name.
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="image" class="col-md-4 col-form-label">
+        Image Url
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="image" class="form-control" id="image"
+          placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg">
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="category" class="col-md-4 col-form-label">
+        Category
+      </label>
+      <select name="category" id="category">
+        <option value="日本料理">日本料理</option>
+        <option value="中東料理">中東料理</option>
+        <option value="義式餐廳">義式餐廳</option>
+        <option value="美式料理">美式料理</option>
+        <option value="酒吧">酒吧</option>
+        <option value="咖啡">咖啡</option>
+        <option value="其他">其他</option>
+      </select>
+    </div>
+    <div class="form-group form-row">
+      <label for="rating" class="col-md-4 col-form-label">
+        Rating
+      </label>
+      <div class="col-md-8">
+        <input type="number" name="rating" class="form-control" id="rating" step=".1" min="0" max="5"
+          placeholder="0.0 ~ 5.0">
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="location" class="col-md-4 col-form-label">
+        Address
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="location" class="form-control" id="location" placeholder="台北市羅斯福路三段 283 巷 17 號">
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="google_map" class="col-md-4 col-form-label">
+        Google Map Url
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="google_map" class="form-control" id="google_map"
+          placeholder="https://goo.gl/maps/BJdmLuVdDbw">
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="phone" class="col-md-4 col-form-label">
+        Phone
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="phone" class="form-control" id="phone" placeholder="02 2363 8009">
+      </div>
+    </div>
+    <div class="form-group form-row">
+      <label for="description" class="col-md-4 col-form-label">
+        Description
+      </label>
+      <div class="col-md-8">
+        <input type="text" name="description" class="form-control" id="description"
+          placeholder="沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。">
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Create</button>
+  </form>
+</div>
