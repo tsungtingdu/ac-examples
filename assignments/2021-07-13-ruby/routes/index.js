@@ -6,8 +6,8 @@ const router = express.Router()
 const home = require('./modules/home')
 router.use('/', home)
 
-// 引入 todos 模組程式碼
-const todos = require('./modules/restaurants')
+// 引入 restaurants 模組程式碼
+const restaurants = require('./modules/restaurants')
 router.use('/restaurants', restaurants)
 
 // 匯出路由器

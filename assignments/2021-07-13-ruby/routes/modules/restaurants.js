@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
+const sortList = require('../../config/sortList')
 
 
 // Create
@@ -8,22 +9,27 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-// Read
-router.post('/', (req, res) => {
-  const name = req.body.name
-  const image = req.body.image
-  const category = req.body.category
-  const rating = req.body.rating
-  const location = req.body.location
-  const google_map = req.body.google_map
-  const phone = req.body.phone
-  const description = req.body.description
+// Search: 必須要放在'/:id' 前面，否則會被當成某種id
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword.toLowerCase().trim()
+  const sortSelect = req.query.sortSelect
+  const sortMongoose = {
+    nameAsc: { name_en: 'asc' },
+    nameDesc: { name_en: 'desc' },
+    category: { category: 'asc' },
+    location: { location: 'asc' },
+    rating: { rating: 'desc' }
+  }
 
-  return Restaurant.create({
-    name, image, category, rating, location, google_map, phone, description
-  })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  Restaurant.find(
+    {
+      $or: [{ name: { $regex: keyword, $options: 'i' } }, { category: { $regex: keyword, $options: 'i' } }]
+    }
+  )
+    .lean()
+    .sort(sortMongoose[sortSelect])
+    .then(restaurants => res.render('index', { restaurants, keyword, sortList, sortSelect }))
+    .catch(error => console.error(error))
 })
 
 router.get('/:id', (req, res) => {
@@ -40,6 +46,16 @@ router.get('/:id/edit', (req, res) => {
   return Restaurant.findById(id)
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+// Read
+router.post('/', (req, res) => {
+  const { name, image, category, rating, location, google_map, phone, description } = req.body
+  return Restaurant.create({
+    name, image, category, rating, location, google_map, phone, description
+  })
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
@@ -70,15 +86,4 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// Search
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase().trim()
-  Restaurant.find(
-    {
-      $or: [{ name: { $regex: keyword, $options: 'i' } }, { category: { $regex: keyword, $options: 'i' } }]
-    }
-  )
-    .lean()
-    .then(restaurants => res.render('index', { restaurants, keyword }))
-    .catch(error => console.error(error))
-})
+module.exports = router 

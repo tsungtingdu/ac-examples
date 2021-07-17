@@ -10,9 +10,13 @@ const Restaurant = require('./models/restaurant')
 
 const routes = require('./routes')
 require('./config/mongoose')
+const handlebarsHelpers = require('./utils/handlebarsHelpers')
 
 // Express template engine
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  helpers: require('./utils/handlebarsHelpers')
+}))
 app.set('view engine', 'handlebars')
 
 // Set static files
