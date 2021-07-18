@@ -1,0 +1,40 @@
+<div>
+  <form action="/" method="POST">
+    <div class="form-group mx-auto" style="width: 500px">
+      <label for="url">Input URL to shorten:</label>
+      <div class="row mx-auto">
+        <div class="form-check col-2" style="display:inline">
+          <input class="form-check-input" type="radio" name="protocol" id="protocolRadios1" value="http"
+            onchange="changeProtocol('http://')" checked>
+          <label class="form-check-label" for="protocolRadios1">
+            http://
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="protocol" id="protocolRadios2" value="https"
+            onchange="changeProtocol('https://')">
+          <label class="form-check-label" for="protocolRadios2">
+            https://
+          </label>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="urlProtocol">http://</span>
+        </div>
+        {{!-- 以requried確保輸入的網址不是空的 --}}
+        <input type="text" class="form-control" id="url" name="url" aria-describedby="shortenURL"
+          placeholder="Input URL here..." required>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-primary" style="width:200px">Shorten</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function changeProtocol(protocol) {
+    document.querySelector('#urlProtocol').textContent = protocol
+  }
+</script>
