@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div class="d-flex flex-column">
+    <div class="d-flex category-section justify-content-center">
+      <form action="/" method="GET" class="d-flex col-8 col-md-5 col-lg-5">
+        <select class="custom-select" name="categorySelect" onchange="submit()">
+          <option selected>類別</option>
+          {{#each categories }}
+          <option value="{{this.name}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </form>
+    </div>
+    <div class="d-flex amount-section justify-content-center mt-3">
+      <div class="d-flex totalAmount">總金額:</div>
+      <div class="showAmount d-flex p-2 bd-highlight">
+        <p class="display-2 text-warning">{{totalAmount}}</p>
+      </div>
+    </div>
+
+    <!-- expense item -->
+    <ul class="list-group" id="data-panel">
+      <div class="justify-content-center">
+        <div class="col-12">
+          {{#each records}}
+          <div class="row mt-3">
+            <i class="{{this.icon}}"></i>
+            <div class="col-auto  mr-auto">
+              <div>{{ this.name }}</div>
+              <div>{{ toDate this.date }}</div>
+            </div>
+            <div class="col col-auto text-end">{{this.amount}}</div>
+            <div class="col col-auto d-flex flex-row">
+              <a href="./records/{{ this._id }}/edit">
+                <button type="button" class="btn btn-primary">編輯</button>
+              </a>
+              <form action="./records/{{ this._id }}?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">
+                  刪除
+                </button>
+              </form>
+            </div>
+          </div>
+          {{/each}}
+          <!--button-->
+          <div class="d-flex justify-content-center button-section mt-5">
+            <a href="/records/new">
+              <button type="submit" class="btn btn-warning btn-lg">新增支出</button>
+            </a>
+          </div>
+          </form>
+        </div>

@@ -1,0 +1,41 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-md-8 mx-auto">
+      <form action="/records" method="POST" id="form" novalidate>
+        <div class="row mb-3">
+          <div class="col-auto">*必填欄位</div>
+          <div class="col-auto">請輸入你的支出明細</div>
+        </div>
+        <div class="row mb-3">
+          <label for="name">名稱*</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="date">日期*</label>
+          <div class="col-sm-6">
+            <input type="date" class="form-control" id="date" name="date" required>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="category">類別*</label>
+          <div class="col-sm-6">
+            <select class="form-select" name="category" id="category" aria-label="Default select" required>
+              {{#each categories}}
+              <option>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="amount">金額*</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" id="amount" name="amount" required>
+          </div>
+        </div>
+        <button id="submit-btn" type="submit" class="btn btn-warning mt-3">新增支出</button>
+      </form>
+    </div>
+  </div>
+</div>
