@@ -1,0 +1,57 @@
+<form method="post" action="/">
+  <div class="cintainer py-3">
+    <div class="container">
+      <div class="row no-gutters">
+        {{#each target}}
+          <div class="col mx-3 card" style="width: 18rem;">
+            <img
+              src="{{this.image}}"
+              class="card-img-top"
+              alt="..."
+              style="height:252px"
+            />
+            <div class="form-check mx-auto my-3">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="title"
+                id="{{this.title_en}}"
+                value="{{this.title_en}}"
+              />
+              <label class="form-check-label" for="{{this.title_en}}">
+                {{this.title}}
+              </label>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+
+      <div class="container form-group mt-5 d-flex">
+        <button
+          id="submit-btn"
+          type="submit"
+          class="btn btn-primary align-self-start"
+        >產生幹話</button>
+        <div class="ml-3 flex-grow-1">
+
+          <textarea
+            readonly
+            class="form-control font-weight-bold"
+            id="description"
+            placeholder="請選擇一個目標講幹話"
+            rows="3"
+            style="color:cadetblue; font-size:1.5em"
+          >{{trashTalk}}</textarea>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+{{! 觀摩同學的方法(紀錄上一次的選擇) }}
+{{#if option}}
+  <script>
+    document.querySelector(`input[value="{{option}}"]`).checked = true
+  </script>
+{{/if}}
