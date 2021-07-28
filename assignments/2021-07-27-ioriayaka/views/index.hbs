@@ -1,0 +1,29 @@
+<div class="container d-flex justify-content-center my-5">
+  <div class="card text-center" style="width: 40rem;">
+    <div class="card-header">
+      <h3 class="title">URL Shortener</h3>
+    </div>
+    <div class="card-img" style="font-size:12rem;">
+      <i class="fas fa-link" style="width: 20rem; height: 20rem;"></i>
+    </div>
+    <form action="/" method="POST" id="form" novalidate>
+      <div class="card-input form-row mb-3">
+        <label for="input-url" class="d-flex justify-content-center align-items-center col-md-2">請輸入網址</label>
+        <div class="col-md-10">
+          <input type="url" class="form-control" id="input-url" placeholder="Input URL here" value="{{ inputUrl }}"
+            name="inputUrl" required>
+          <div class="valid-feedback">
+            OK!
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid url.
+          </div>
+          {{#if errorMsg}}
+          <div>{{ errorMsg }}</div>
+          {{/if}}
+        </div>
+      </div>
+      <button id="submit-btn" class="btn btn-primary" type="submit">產生</button>
+    </form>
+  </div>
+</div>
