@@ -1,0 +1,46 @@
+<div class="container mt-3">
+  <form action="/records/{{ record._id }}?_method=PUT" method="POST" data-toggle="validator">
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div style="text-align: center; font-weight: bold; font-size: 30px;">請修改你的支出</div>
+      </div>
+    </div>
+    <label class="col-sm-12 col-form-label" style="text-align: end; color: red;"><small>*必填欄位</small></label>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label" style="text-align: end;">名稱*：</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" placeholder="name" name="name" value="{{ record.name }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputDate" class="col-sm-2 col-form-label" style="text-align: end;">日期*：</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" placeholder="date" name="date" value="{{ moment record.date format="YYYY-MM-DD" }}" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputCategory" class="col-sm-2 col-form-label" style="text-align: end;">類別*：</label>
+      <div class="col-sm-10">
+        <select class="custom-select" id="inputGroupSelect01" name="category" required>
+          <option selected>{{ record.category }}</option>
+          {{#each categoryList}}
+          <option value="{{ this.name }}">{{ this.name }}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputAmount" class="col-sm-2 col-form-label" style="text-align: end;">金額*：</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" placeholder="amount" name="amount" value="{{ record.amount }}"
+          required>
+      </div>
+    </div>
+    <div class="container mt-3" style="width: 480px; margin: 0 auto">
+      <div class="d-flex justify-content-end">
+        <a href="/" class="btn btn-outline-dark mr-3">回上一頁</a>
+        <button type="submit" class="btn btn-primary" style="width: 300px;">送出</button>
+      </div>
+    </div>
+  </form>
+</div>

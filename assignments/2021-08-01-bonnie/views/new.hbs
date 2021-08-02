@@ -1,0 +1,45 @@
+<div class="container mt-5">
+  <form action="/records" method="POST" data-toggle="validator">
+    <div class="form-group row">
+      <div class="col-12">
+        <div style="text-align: center; font-weight: bold; font-size: 30px;">請輸入你的支出</div>
+      </div>
+    </div>
+    <label class="col-sm-12 col-form-label" style="text-align: end; color: red;"><small>*必填欄位</small></label>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label" style="font-size: 18px;">名稱 *：</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" placeholder="請輸入支出名稱" name="name" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputDate" class="col-sm-2 col-form-label" style="font-size: 18px;">日期 *：</label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control" name="date" value="YYYY-MM-DD" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputCategory" class="col-sm-2 col-form-label" style="font-size: 18px;">類別 *：</label>
+      <div class="col-sm-10">
+        <select class="custom-select" id="inputGroupSelect01" name="category" required>
+          <option value="" selected>請選擇類別</option>
+          {{#each categories}}
+          <option value="{{ this.name }}">{{ this.name }}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputAmount" class="col-sm-2 col-form-label" style="font-size: 18px;">金額 *：</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" placeholder="請輸入金額" name="amount" required>
+      </div>
+    </div>
+    <div class="container mt-3" style="width: 480px; margin: 0 auto">
+      <div class="d-flex justify-content-end">
+        <a href="/" class="btn btn-outline-dark mr-3">回上一頁</a>
+        <button type="submit" class="btn btn-primary" style="width: 300px;">新增支出</button>
+      </div>
+    </div>
+  </form>
+</div>
