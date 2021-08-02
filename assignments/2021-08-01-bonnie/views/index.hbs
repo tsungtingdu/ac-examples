@@ -1,0 +1,55 @@
+<div class="container mt-3" >
+  <div class="d-flex justify-content-center">
+    <div class="input-group mb-3">
+      <select class="custom-select mb-3" onchange="window.location.href=this.value">
+        <option selected disabled value="">查看單一類別</option>
+        <option value="/">全部</option>
+        {{#each categoryList}}
+          <option value="/filter?categorySelector={{ this.name }}">{{ this.name }}</option>
+        {{/each}}
+      </select>
+      <div class="ml-3">
+        <a href="./records/new" class="btn btn-primary" style="width: 100px;">新增支出</a>
+      </div>
+    </div>
+  </div>
+
+  <ul class="list-group list-group-striped list-group-flush">
+    {{#each records}}
+    <li class="list-group-item p-0 border-0">
+      <div class="row" style="border-bottom: 1px solid #ccc">
+        <div class="col-8 d-flex align-items-center p-3">
+          <div class="col-2 text-center" style="font-size: .5rem">
+            {{#each ../categoryList}}
+            {{#ifEqual this.name ../this.category}}{{{ this.icon }}}{{/ifEqual}}
+            {{/each}}
+          </div>
+
+          <div class="col-8">
+            <div style="font-size: 20px; font-weight:bold">{{ this.name }}</div>
+            <small>日期：{{ moment this.date format="YYYY-MM-DD" }}</small>
+          </div>
+          <big class="col-2" style="text-align: left;">NT:{{ this.amount }}</big>
+        </div>
+
+        <div class="col-4 control d-flex justify-content-end align-items-center">
+          <a class="btn btn-outline-primary mr-3" href="./records/{{ this._id }}/edit">修改</a>
+          <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-secondary" onclick="return confirm('您確定要刪除嗎？')">刪除</button>
+          </form>
+        </div>
+      </div>
+
+    </li>
+    {{/each}}
+  </ul>
+
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-between">
+        <span class="font-weight-bold" style="font-size: 30px; line-height: 80px;">總金額：</span>
+        <span class="px-2" style="font-size: 50px; color:#f55753"><small>NT$</small>{{ totalAmount }}</span>
+      </div>
+    </div>
+  </div>
+</div>
