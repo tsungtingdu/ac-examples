@@ -1,0 +1,12 @@
+<div class="input-panel">
+  <form action="" method="POST">
+    <input type="text" name="inputUrl" placeholder="Input URL here"
+      class="form-control form-control-lg {{#if notValidUrl}} is-invalid {{/if}}" required>
+    <div class="invalid-feedback">
+      Please enter valid URL. (Start with http:// or https://)
+    </div>
+    <div class="button">
+      <button class="btn btn-outline-primary" type="submit">Shorten</button>
+    </div>
+  </form>
+</div>

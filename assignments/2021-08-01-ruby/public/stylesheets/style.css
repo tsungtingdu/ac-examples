@@ -1,0 +1,9 @@
+.container {
+  margin-top: 20px;
+  text-align: center;
+  max-width: 800px;
+}
+
+.btn {
+  margin: 20px
+}

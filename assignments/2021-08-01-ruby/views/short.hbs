@@ -1,0 +1,10 @@
+{{!-- copy to clipboard --}}
+<div class="input-panel">
+  <h2>Success! Please use this link:</h2>
+  <input type="hidden" id="short-url" value="{{ projectUrl }}{{ shortUrl }}" />
+  <br>
+  <a href={{ projectUrl }}{{ shortUrl }}>{{ projectUrl }}{{ shortUrl }}</a>
+  <div class="button">
+    <button class="btn btn-outline-primary" type="submit" id="copy-button">Copy</button>
+  </div>
+</div>
