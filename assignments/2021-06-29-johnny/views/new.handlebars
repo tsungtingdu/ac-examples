@@ -1,0 +1,49 @@
+<div class="container" style="width: 50%">
+  <div class="d-flex flex-column mt-3">
+    <div class="row">
+      <p class="col-4" style="color:#88556d">*必填欄位</p>
+      <h2 class="mt-4 ml-4"><strong>請輸入你的支出</strong></h2>
+    </div>
+
+    <form action="/records" method="POST">
+      <div class="row mt-5">
+        <label class="col-4 mt-2" for="name">
+          <h3>名稱*:</h3>
+        </label>
+        <input id="name" name="name" type="text" class="col-6 form-control mt-2" style="width:300px" required>
+      </div>
+
+      <div class="row mt-5">
+        <label class="col-4 mt-2" for="date">
+          <h3>日期*:</h3>
+        </label>
+        <input id="date" name="date" type="date" class="col-6 form-control mt-2" style="width:300px" required>
+      </div>
+
+      <div class="row mt-5">
+        <label class="col-4 mt-2" for="category">
+          <h3>類別*:</h3>
+        </label>
+        <select id="category" class="col-6 form-control mt-2" name="category" style="width:300px" required>
+          <option>家居物業</option>
+          <option>交通出行</option>
+          <option>休閒娛樂</option>
+          <option>餐飲食品</option>
+          <option>其他</option>
+        </select>
+      </div>
+
+      <div class="row mt-5">
+        <label class="col-4 mt-2" for="amount">
+          <h3>金額*:</h3>
+        </label>
+        <input id="amount" name="amount" type="number" class="mt-2 col-6 form-control" min="0" max="100000" style="width:300px" required>
+      </div>
+
+      <div class="mt-5 ml-3 d-flex justify-content-center">
+        <button class="btn btn-warning" type="submit">新增支出</button>
+      </div>
+    </form>
+
+  </div>
+</div>
