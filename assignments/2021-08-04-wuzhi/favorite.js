@@ -1,20 +1,9 @@
 const BASE_URL = "https://lighthouse-user-api.herokuapp.com";
 const INDEX_URL = BASE_URL + "/api/v1/users/";
-
-const users = JSON.parse(localStorage.getItem('favoriteUsers')) || []
-const dataPanel = document.querySelector('#data-panel')
-const searchForm = document.querySelector('#search-form')
-const searchInput = document.querySelector('#search-input')
-let filteredUsers = []
-
-// 監聽 dataPanel
-dataPanel.addEventListener('click', function onPanelClicked(event) {
-  if (event.target.matches('.btn-show-user')) {
-    showUserModal(event.target.dataset.id) // 
-  } else if (event.target.matches('.btn-remove-favorite')) {
-    removeFromFavorite(Number(event.target.dataset.id))
-  }
-})
+const users = JSON.parse(localStorage.getItem("favoriteUsers"));
+const dataPanel = document.querySelector("#data-panel");
+const searchForm = document.querySelector("#search-form")
+const searchInput = document.querySelector("#search-input")
 
 function renderUserList(data) {
   let rawHTML = "";
@@ -28,7 +17,7 @@ function renderUserList(data) {
           </div>
           <div class="card-footer ">
             <button class="btn btn-primary btn-show-info" data-toggle="modal" data-target="#user-modal" data-id="${item.id}">About Me</button>
-            <button class ="btn btn-info btn-add-favorite"> + </button>
+             <button class="btn btn-dark btn-remove-favorite" data-id="${item.id}">X</button>
           </div>
       </div>
     </div>
@@ -53,20 +42,38 @@ function showUserModal(id) {
     modalUserBirthday.innerText = `Birthday: ${data.birthday}`;
     modalUserRegion.innerText = `Region: ${data.region}`;
     modalUserEmail.innerText = `Email: ${data.email}`;
-  });
+  })
+}
+
+function addToFavorite(id) {
+  console.log(id)
+  const list = JSON.parse(localStorage.getItem("favoriteUsers")) || [];
+  const user = users.find(user => user.id === id)
+
+  if (list.some(user => user.id === id)) {
+    return alert("Existed")
+  }
+
+  list.push(user)
+  localStorage.setItem("favoriteUsers", JSON.stringify(list))
 }
 
 function removeFromFavorite(id) {
   if (!users) return
-
   const userIndex = users.findIndex((user) => user.id === id)
   if (userIndex === -1) return
-
   users.splice(userIndex, 1)
-
   localStorage.setItem('favoriteUsers', JSON.stringify(users))
-
   renderUserList(users)
+
 }
+
+dataPanel.addEventListener('click', function onPanelClicked(event) {
+  if (event.target.matches('.btn-show-info')) {
+    showUserModal(Number(event.target.dataset.id));
+  } else if (event.target.matches('.btn-remove-favorite')) {
+    removeFromFavorite(Number(event.target.dataset.id))
+  }
+});
 
 renderUserList(users)
