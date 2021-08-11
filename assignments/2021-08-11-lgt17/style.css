@@ -1,0 +1,311 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap&subset=chinese-traditional");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6f7f8;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  line-height: 0.9;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto 3rem auto;
+}
+
+/* header */
+
+header {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  margin: 0 auto 3rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'left middle right';
+  z-index: 999;
+  opacity: 0.95;
+}
+.name {
+  display: flex;
+  grid-area: middle;
+  line-height: 80px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin-top: 1%;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  /*與外層 Header 高度相同達到垂直置中*/
+  line-height: 80px;
+  color:black;
+}
+
+.nav {
+  grid-area: left;
+  line-height: 80px;
+  visibility: hidden;
+  position: absolute;
+}
+
+.function {
+  grid-area: right;
+  line-height: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.function-list {
+  height: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2rem;
+}
+
+.nav-link {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* selector */
+
+.select {
+  padding-top: 120px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "one product two"
+    "three selector four";
+}
+
+.product-name {
+  grid-area: product;  
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.selectors {
+  padding-top: 1rem;
+  grid-area: selector;
+  text-align: center;
+  height: 4rem;
+}
+select {
+  width:20%;
+  font-size: 1.2rem;
+  height: 100%;
+  border-color: gray;
+  border-radius: 10%;
+  margin-right: 1rem;
+}
+
+/* products */
+.card-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 2rem;
+}
+.card{
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+.upper-part {
+  width: 100%;
+  height: 90%;
+}
+.clothe , .real-foto{
+  width: 100%;
+  height: 90%;
+  display: block;
+  position:absolute;
+  
+}
+
+.real-foto {
+  opacity: 0;
+}
+.upper-part:hover .clothe {
+  opacity: 0;
+}
+
+.upper-part:hover .real-foto {
+  opacity: 1;
+}
+
+.heart {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  text-align: center;
+}
+.fa-heart {
+  font-size: 300%;
+  line-height: 80px;
+}
+.content {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+}
+
+/* paginator */
+.quantity {
+  text-align: center;
+}
+
+/* subscribe */
+.subscribe-banner {
+  background-image: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/14376/template.png');
+  height: 400px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  text-align: center;
+}
+.message {
+  line-height: 100px;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 900;
+}
+.sign-up {
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  line-height: 80px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-areas: 'left left center center center right right'
+}
+
+.signup {
+  background-color: white;
+  border-radius: 50px;
+  grid-area: center;
+  height: 90px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: 'email email email signup';
+}
+.email {
+  border: none;
+  font-size: 2rem;
+  width: 100%;
+}
+.submit {
+  font-size: 2rem;
+  font-weight: 900;
+  border: none;
+  background: none;
+  color: white;
+}
+.enter-email {
+  grid-area: email;
+  padding-left: 15%;
+}
+.submitemail {
+  grid-area: signup;
+  background-color: black;
+  border-radius: 0 50px 50px 0;
+}
+
+.policy {
+  align-items: center;
+}
+
+/* footer */
+footer {
+  text-align: center;
+  background: #EFEFEF;
+  height: 2rem;
+  line-height: 2rem;
+}
+
+
+/* RWD SETTING */
+@media screen and (min-width:1200px) {
+  
+  .name {
+    grid-area: left;
+    padding-left: 2rem;
+  }
+
+  .navbar-brand {
+    font-size: 2rem;
+    padding-left: 1rem;
+  }
+  .nav-list {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 8rem;
+  }
+  
+  .nav {
+    grid-area: middle;
+    visibility: visible;
+    position: static;
+  } 
+  .function {
+    grid-area: right;
+    padding-right: 2rem;
+  }
+  .function-list {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 2rem;
+  }
+}
