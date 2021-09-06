@@ -60,26 +60,25 @@ darkModeToggle.addEventListener("change", darkModeToggleHandler);
 
 //change background color of checked list
 const mainTable = document.querySelector(".main__table")
+//check status and change background color
 function changeRowColor(input,row){
-  input.checked?
-    row.classList.add(".background_change"):
-    row.classList.remove(".background_change")
+  input.checked
+    ?row.classList.add("background_change")
+    :row.classList.remove("background_change")
 }
 
+//monitor the change of table
 mainTable.addEventListener("change", function checkRowColor(event){
   const target = event.target
-  if(target.classList.contains('table__header')){
+  const parentRow = event.target.parentElement.parentElement;
+  //if the target is title checkbox 
+  if(parentRow.classList.contains("table__header")){
+    //all checkbox
     const tbodyAllCheckbox = document.querySelectorAll(".table__cell--checkbox")
-    for( let i = 1; i < tbodyCheckbox.length; i ++){
-      tbodyCheckbox[i].children[0].checked = target.checked;
-    }
-  }ret
+    for( let i = 1; i < tbodyAllCheckbox.length; i ++){
+      tbodyAllCheckbox[i].children[0].checked = target.checked;
+      changeRowColor(tbodyAllCheckbox[i].children[0],tbodyAllCheckbox[i].parentElement)
+    }return
+  }
+  changeRowColor(target,parentRow)
 });
-
-//maintable監聽
-//監聽表格所有input
-//如果是表頭input
-//選取表格內所有input狀態變得跟表頭狀態一樣
-
-//確認狀態function
-//如果input狀態為check 加上換背景class如果沒有check remove class
