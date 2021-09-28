@@ -1,0 +1,79 @@
+
+body {
+  background-color: #211E55;
+}
+
+.navbar {
+    background-color: #0F2540;
+
+}
+
+#search-input {
+  background-color: #FEDFE1;
+
+}
+#search-btn {
+  background-color: #DC9FB4;
+  border-color: #DC9FB4;
+}
+
+.card {
+  border-radius: 10%;
+  background-color: #FEDFE1;
+  box-shadow: 0px 0px 2px 3px #DC9FB4;
+}
+
+
+.card-img-top {
+  border-radius: 20%;
+  margin: 1rem auto;
+  width: 80%;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+  box-shadow: 10px 10px 99px 6px #DC9FB4;
+}
+
+.card-user-name {
+  font-weight: bold;
+  font-size: 0.5rem;
+}
+
+.favorite-icon {
+  color:#F596AA;
+}
+.favorite-icon:hover {
+  transform: scale(1.2);
+}
+
+.page-link {
+  background-color: #6E75A4;
+  border: 0px;
+  color:black;
+}
+
+.page-link:hover {
+    background-color: #7B90D2;
+}
+
+.modal-header, .modal-footer {
+  border-color: aqua;
+}
+
+.modal-content, .list-group-item {
+  background-color: #B28FCE;
+}
+
+.btn-add-favorite {
+  background-color: #F596AA;
+  border-color: #F596AA;
+}
+.btn-add-favorite:hover {
+  background-color: #F596AA;
+  border-color: #F596AA;
+}
+
+.list-group {
+  word-wrap:break-word;
+}
