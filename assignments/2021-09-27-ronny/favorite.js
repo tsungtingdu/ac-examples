@@ -2,23 +2,37 @@
 const BASE_URL = "https://lighthouse-user-api.herokuapp.com";
 const INDEX_URL = BASE_URL + "/api/v1/users/";
 const users = JSON.parse(localStorage.getItem('favoriteUsers')) || [];
+let filteredUsers = []
+let nowUsers = ""
 // dom常數
 const dataPanel = document.querySelector("#data-panel");
 // search常數
 const searchForm = document.querySelector("#search-form")
 const searchInput = document.querySelector("#search-input")
+let keyword = ""
 // modal常數
 const modalBox = document.querySelector("#user-modal")
 // page常數
 const USERS_PER_PAGE = 10
 const paginator = document.querySelector("#paginator")
-
+let nowPage = ""
 
 // axios
 
 // function
 // function-render list
 function renderList(data) {
+  // let dataHTML = "";
+  // data.forEach((item) => {
+  //   dataHTML += `
+  //   <div class="card gx-0 mb-3 me-3" style="width: 15rem;">
+  //     <img src="${item.avatar}" data-id=${item.id} class="card-img-top card-user-img" data-bs-toggle="modal" data-bs-target="#user-modal" alt="user-img">
+  //     <div class="card-body p-0">
+  //       <h5 class="card-user-name text-center mb-1">${item.name} ${item.surname}</h5>
+  //     </div>
+  //   </div>`;
+  // });
+
 
   dataPanel.innerHTML = data.map(item => {
     return `
@@ -85,14 +99,17 @@ function showUserModal(id) {
 // function-search bar
 function onSearchFormSubmitted(event) {
   event.preventDefault()
-  const keyword = searchInput.value.trim().toLowerCase()
+  keyword = searchInput.value.trim().toLowerCase()
 
   if (!keyword.length) {
     return alert('請輸入有效字串！')
   }
 
-  let filteredUsers = []
+  filterUser(keyword)
+}
 
+// Function- filteruser
+function filterUser(keyword) {
   filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(keyword) || user.surname.toLowerCase().includes(keyword)
   )
@@ -100,7 +117,10 @@ function onSearchFormSubmitted(event) {
     return alert(`您輸入的關鍵字：${keyword} 沒有符合條件的人`)
   }
   renderList(filteredUsers)
+  renderPaginator(filteredUsers.length)
+  renderList(getUsersByPage(1))
 }
+
 
 // Function- modal-say goodbyeClicked
 function addFavoriteClicked(event) {
@@ -134,20 +154,31 @@ function removeFromFavorite(id) {
   if (userIndex === -1) return
   users.splice(userIndex, 1)
   const message = `再見了${removeUser.name}，我們分手吧～：( `
-  console.log(message)
   alert(message)
   localStorage.setItem("favoriteUsers", JSON.stringify(users))
-  renderList(users)
-  renderPaginator(users.length)
-  renderList(getUsersByPage(1))
+
+  if (filteredUsers.length !== 0) {
+    filterIndex = filteredUsers.findIndex((user) => user.id === id)
+    if (filterIndex === -1) return
+    filteredUsers.splice(filterIndex, 1)
+    nowUsers = filteredUsers
+  }
+
+  renderList(nowUsers)
+  renderPaginator(nowUsers.length)
+  console.log(nowPage)
+  renderList(getUsersByPage(nowPage))
 }
 
 // function getUsersByPage
 function getUsersByPage(page) {
+  // 若有搜尋使用者則使用該名單，若無用原本的users
+  nowUsers = filteredUsers.length ? filteredUsers : users
+  nowPage = page
   //計算起始 index 
   const startIndex = (page - 1) * USERS_PER_PAGE
   //回傳切割後的新陣列
-  return users.slice(startIndex, startIndex + USERS_PER_PAGE)
+  return nowUsers.slice(startIndex, startIndex + USERS_PER_PAGE)
 }
 
 // function renderPaginator
@@ -170,6 +201,7 @@ function onPaginatorClicked(event) {
 
   const page = Number(event.target.dataset.page)
   renderList(getUsersByPage(page))
+  console.log(page)
 }
 
 // DOM-modal

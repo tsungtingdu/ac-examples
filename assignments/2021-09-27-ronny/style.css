@@ -4,14 +4,13 @@ body {
 }
 
 .navbar {
-    background-color: #0F2540;
-
+  background-color: #0F2540;
 }
 
 #search-input {
   background-color: #FEDFE1;
-
 }
+
 #search-btn {
   background-color: #DC9FB4;
   border-color: #DC9FB4;
@@ -43,6 +42,7 @@ body {
 .favorite-icon {
   color:#F596AA;
 }
+
 .favorite-icon:hover {
   transform: scale(1.2);
 }
@@ -65,10 +65,7 @@ body {
   background-color: #B28FCE;
 }
 
-.btn-add-favorite {
-  background-color: #F596AA;
-  border-color: #F596AA;
-}
+.btn-add-favorite, 
 .btn-add-favorite:hover {
   background-color: #F596AA;
   border-color: #F596AA;
