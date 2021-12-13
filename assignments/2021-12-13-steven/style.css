@@ -1,0 +1,28 @@
+.list-switch:hover{
+  cursor: pointer;
+}
+
+.fa-bars:active, .fa-th:active {
+  background:rgb(184, 184, 178);
+}
+
+.list-switch{
+  position: fixed;
+  left: 80%;
+
+}
+
+.fa-bars{
+  margin-right: 8px;
+}
+
+.list-group{
+  position: fixed;
+  width: 80%;
+}
+
+.list-group-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
