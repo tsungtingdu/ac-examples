@@ -1,0 +1,47 @@
+<!-- search bar -->
+<div class="container search-bar">
+  <div class="search-bar-outer py-3 px-4"
+    style="margin: 0 auto; margin-top: -60px; max-width: 680px; border-radius: 8px; background-color: #fce2cf; box-shadow: 0 3px 10px rgb(0, 0, 0, 0.5);">
+    <div class="search-bar-inner">
+      <form action="/search">
+        <h4 class="mb-2" style="color: #9b4b4b; font-weight: bold;">尋找餐廳：</h4>
+        <div class="input-group">
+          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+            value="{{keyword}}" aria-describedby="search-button">
+          <div class="input-group-append">
+            <button class="btn btn-outline-success" type="submit"
+              style="background-color: #9b4b4b; color: white; font-weight: bold;">搜尋
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- restaurant list -->
+<div class="container mt-5" style="width: 1116px">
+  <div class="row">
+    <div class="d-flex flex-wrap">
+      {{#each restaurants}}
+      <div class="card-columns col-sm-4 pe-3">
+        <a href="/restaurant/{{this.id}}" class="text-secondary" style="text-decoration: none;">
+          <div class="card mb-3">
+            <img class="card-img-top" src="{{this.image}}" alt="美食" style="height: 378px;">
+            <div class="card-body p-3">
+              <h4 class="card-title mb-1">{{this.name}}</h6>
+                <div class="restaurant-category mb-1" style="font-size: 16px;">
+                  <i class="fas fa-utensils pr-2"></i> {{this.category}}
+                </div>
+                <span class="badge rounded-pill bg-danger font-weight-normal">
+                  {{this.rating}}
+                  <i class="fas fa-star fa-xs"></i>
+                </span>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
