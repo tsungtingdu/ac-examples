@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<main>
+  <head>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid justify-content-between">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./social.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./social-favorite.html">Favorite</a>
+              </li>
+            </ul>
+          </div>
+          <div id="search-bar">
+            <form class="d-flex" id="search-form">
+              <input class="form-control me-2" id="search-result" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" id="search-submit" type="submit">Search</button>
+            </form>
+          </div>
+      </div>
+    </nav>
+
+    <!-- Panel-Grid -->
+    <div class="container">
+      <div id="panel" class="row d-flex justify-content-center flex-wrap"></div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h5 class="modal-title" id="modal-name">Modal title</h5>
+          </div>
+          <div class="modal-body row">
+            <div id="modal-image" class="col-lg-12 d-flex justify-content-center">
+              <img src="https://randomuser.me/api/portraits/men/88.jpg" id="modal-user-avatar" alt="modal-avatar">
+            </div>
+            <div class="modal-info col-lg-12">
+              <div id="modal-age">25</div>
+              <div id="modal-nationality">German</div>
+              <div id="modal-birthday">1996-11-16</div>
+              <div id="modal-email"></div>
+            </div>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning btn-lg" data-bs-dismiss="modal">Like</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center"></ul>
+    </nav>
+
+    <!-- Bootstrap 5.0.1 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="./social.css">
+  </head>
+
+  <body>
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <!-- Index.js -->
+    <script src="./social.js"></script>
+    <!-- jQuery Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  </body>
+</main>
