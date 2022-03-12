@@ -1,0 +1,89 @@
+html {
+  min-width: 600px;
+  min-height: 300px;
+}
+html body {
+  height: 100vh;
+  background: #e4d4c8;
+}
+html * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: #523a28;
+  font-size: 12px;
+  font-family: Calibri;
+  font-style: italic;
+}
+html a {
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+body #root {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-inline: auto;
+  width: 500px;
+  height: 250px;
+  border-radius: 5px;
+  background: #d0b49f;
+}
+body #root #RGB-form,
+body #root #HEX-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+}
+body #root #RGB-form {
+  gap: 2em;
+}
+body #root #RGB-form .control {
+  display: flex;
+  gap: 0.5em;
+}
+body #root #RGB-form .control * {
+  font-size: 20px;
+}
+body #root #RGB-form .control #red-input-number,
+body #root #RGB-form .control #green-input-number,
+body #root #RGB-form .control #blue-input-number {
+  width: 50px;
+  padding-left: 3px;
+  border: none;
+  border-radius: 5px;
+  background: #e4d4c8;
+}
+body #root #HEX-result p {
+  border-radius: 5px;
+  width: 85%;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+}
+body #root #HEX-result p:hover {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition-duration: 0.5s;
+}
+body footer {
+  font-size: 14px;
+}
+body footer a:hover {
+  transition-duration: 0.5s;
+  color: navy;
+  font-weight: bold;
+  font-size: 18px;
+}
