@@ -5,99 +5,80 @@ const defaultRGBValue = 121;
 const RANGE = "range";
 const Type_Number = "number";
 
+const META_DATA = {
+	R: {
+		labelId: "red-input-range",
+		numberId: "red-input-number",
+		color: "darkred"
+	},
+	G: {
+		labelId: "green-input-range",
+		numberId: "green-input-number",
+		color: "green"
+	},
+	B: {
+		labelId: "blue-input-range",
+		numberId: "blue-input-number",
+		color: "blue"
+	}
+}
+
 // blueprint
 function sliderData(labelValue) {
 	this.labelValue = labelValue;
-	this.inputRangeID =
-		labelValue === R
-			? "red-input-range"
-			: labelValue === G
-			? "green-input-range"
-			: "blue-input-range";
-	this.inputNumberID =
-		labelValue === R
-			? "red-input-number"
-			: labelValue === G
-			? "green-input-number"
-			: "blue-input-number";
-	this.color =
-		labelValue === R ? "darkred" : labelValue === G ? "green" : "blue";
+	const { labelId, numberId, color } = META_DATA[labelValue]
+	this.inputRangeID = labelId;
+	this.inputNumberID = numberId;
+	this.color = color;
 }
 
 // Initialize Slider Data based on blueprint
-const sliderDataArray = [];
-sliderDataArray.push(new sliderData(R));
-sliderDataArray.push(new sliderData(G));
-sliderDataArray.push(new sliderData(B));
+const sliderDataArray = [R, G ,B].map(key => new sliderData(key));
+
+function getHex(v) {
+	let targetValue;
+
+	if (Number.isNaN(v)) {
+		targetValue = defaultRGBValue;
+	} else if (v > 255) {
+		targetValue = 255
+	} else if (v < 0) {
+		targetValue = 0
+	} else {
+		targetValue = v
+	}
+
+	return targetValue.toString(16).padStart(2, "0").toUpperCase();
+}
 
 // utility function
-function returnHEXCode(r, g, b) {
-	const rHex = Number.isNaN(r)
-		? defaultRGBValue.toString(16).padStart(2, "0").toUpperCase()
-		: r > 255
-		? Number(255).toString(16).padStart(2, "0").toUpperCase()
-		: r < 0
-		? Number(0).toString(16).padStart(2, "0").toUpperCase()
-		: r.toString(16).padStart(2, "0").toUpperCase();
-	const gHex = Number.isNaN(g)
-		? defaultRGBValue.toString(16).padStart(2, "0").toUpperCase()
-		: g > 255
-		? Number(255).toString(16).padStart(2, "0").toUpperCase()
-		: g < 0
-		? Number(0).toString(16).padStart(2, "0").toUpperCase()
-		: g.toString(16).padStart(2, "0").toUpperCase();
-	const bHex = Number.isNaN(b)
-		? defaultRGBValue.toString(16).padStart(2, "0").toUpperCase()
-		: b > 255
-		? Number(255).toString(16).padStart(2, "0").toUpperCase()
-		: b < 0
-		? Number(0).toString(16).padStart(2, "0").toUpperCase()
-		: b.toString(16).padStart(2, "0").toUpperCase();
-	const result = ["#", rHex, gHex, bHex].join("");
-	return result;
+function returnHEXCode(r = defaultRGBValue, g = defaultRGBValue, b = defaultRGBValue) {
+	return ["#", getHex(r), getHex(g), getHex(b)].join("");
+}
+
+function getDomValue(type) {
+	const key = type === RANGE ? 'labelId' : 'numberId';
+	return {
+		r: document.getElementById(META_DATA[R][key])?.valueAsNumber,
+		g: document.getElementById(META_DATA[G][key])?.valueAsNumber,
+		b: document.getElementById(META_DATA[B][key])?.valueAsNumber
+	}
 }
 
 // event Handler
 function handleInput(e) {
-	const targetInput =
-		e.target.type === RANGE
-			? e.target.nextElementSibling
-			: e.target.previousElementSibling;
+	console.log('input')
+	const { target } = e
+	const targetInput = target.type === RANGE ? target.nextElementSibling : target.previousElementSibling;
 	const hexCodeText = document.querySelector("#hexcode-text");
 	const hexResult = document.querySelector("#HEX-result");
-	const r =
-		e.target.type === RANGE
-			? document.querySelector("#red-input-range").valueAsNumber
-			: document.querySelector("#red-input-number").valueAsNumber;
-	const g =
-		e.target.type === RANGE
-			? document.querySelector("#green-input-range").valueAsNumber
-			: document.querySelector("#green-input-number").valueAsNumber;
-	const b =
-		e.target.type === RANGE
-			? document.querySelector("#blue-input-range").valueAsNumber
-			: document.querySelector("#blue-input-number").valueAsNumber;
+
+	const { r, g, b } = getDomValue(target.type)
 	const resultHEX = returnHEXCode(r, g, b);
-	const alertMsg = "valid number is within 0 ~ 255";
-	// if user input is outside valid range
-	if (r > 255 || g > 255 || b > 255) {
-		targetInput.value = 255;
-		e.target.value = 255;
-		alert(alertMsg);
-	} else if (r < 0 || g < 0 || b < 0) {
-		targetInput.value = 0;
-		e.target.value = 0;
-		alert(alertMsg);
-	} else if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) {
-		targetInput.value = defaultRGBValue;
-		e.target.value = defaultRGBValue;
-		alert(alertMsg);
-	} else {
-		targetInput.value = e.target.valueAsNumber;
-	}
-	// update Hex text
+
+	targetInput.value = target.valueAsNumber;
+
 	hexCodeText.textContent = resultHEX;
-	// update Hex Color
 	hexCodeText.style.color = resultHEX;
 	hexResult.style.backgroundColor = resultHEX;
 }
@@ -120,6 +101,7 @@ function createRoot() {
 	result.appendChild(createHEXResult());
 	return result;
 }
+
 function createRGBForm() {
 	const result = document.createElement("form");
 	result.id = "RGB-form";
@@ -131,43 +113,26 @@ function createRGBForm() {
 
 	return result;
 }
+
 function createRGBSlider(sliderData) {
-	const label = document.createElement("label");
-	label.setAttribute("for", sliderData.inputRangeID);
-	label.textContent = sliderData.labelValue;
-	label.style.color = sliderData.color;
-	label.style.fontWeight = "bold";
-
-	const inputRange = document.createElement("input");
-	inputRange.type = "range";
-	inputRange.id = sliderData.inputRangeID;
-	inputRange.value = defaultRGBValue;
-	inputRange.max = 255;
-
-	const inputNumber = document.createElement("input");
-	inputNumber.type = "number";
-	inputNumber.id = sliderData.inputNumberID;
-	inputNumber.style.color = sliderData.color;
-	inputNumber.value = defaultRGBValue;
-	inputNumber.min = 0;
-	inputNumber.max = 255;
-
 	const result = document.createElement("div");
 	result.className = "control";
-	result.appendChild(label);
-	result.appendChild(inputRange);
-	result.appendChild(inputNumber);
-	result.addEventListener("input", handleInput);
+	const { labelValue, color, inputRangeID, inputNumberID } = sliderData;
 
+	result.innerHTML = `
+		<label for="${labelValue}" style="font-weight: bold; color: ${color}">${labelValue}</label>
+		<input type="range" max="255" id="${inputRangeID}" value="${defaultRGBValue}"></input>
+		<input type="number" max="255" min="0" id="${inputNumberID}" color:"${color}" value="${defaultRGBValue}"></input>
+	`
+
+	result.addEventListener("input", handleInput);
 	return result;
 }
+
 function createHEXResult() {
 	const hexCodeText = document.createElement("p");
-	const hexCode = returnHEXCode(
-		defaultRGBValue,
-		defaultRGBValue,
-		defaultRGBValue
-	);
+	const hexCode = returnHEXCode();
+
 	hexCodeText.id = "hexcode-text";
 	hexCodeText.textContent = hexCode;
 	hexCodeText.style.color = hexCode;
@@ -180,6 +145,7 @@ function createHEXResult() {
 
 	return result;
 }
+
 function createFooter() {
 	const result = document.createElement("footer");
 	const signature = `
