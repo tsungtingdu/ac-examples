@@ -1,0 +1,53 @@
+/* .user-panel {
+	display: flex;
+	flex-wrap: wrap;
+} */
+
+.user {
+	margin: 0.5rem;
+}
+
+.user img {
+	cursor: pointer;
+}
+
+/* .user img:hover {
+	transform: scale(1.1);
+}
+
+.user img {
+	transition: transform 300ms ease-in-out;
+} */
+
+.btn-like {
+	cursor: pointer;
+}
+
+.avatar {
+	width: 50%;
+	margin: auto;
+	border-radius: 50%;
+}
+
+.name {
+	margin: 0.5rem 0 0 0;
+}
+
+.sex,
+.age {
+	margin: 0.5rem;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#age-lower-input,
+#age-upper-input {
+	width: 10%;
+}
+
+#setting-submit {
+	display: block;
+	width: 100%;
+	margin: 1rem auto;
+}
