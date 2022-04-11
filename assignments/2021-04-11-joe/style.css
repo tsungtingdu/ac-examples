@@ -1,0 +1,389 @@
+* {
+  box-sizing: border-box;
+}
+
+/* z-index: 0; .team */
+/* z-index: 1; .member-container .team-name  */
+/* z-index: 2; .page-element  */
+/* z-index: 2999; .diy-modal-background */
+
+body {
+  /* 排版 */
+  position: relative;
+  /* 區塊 */
+  background-image: url("./pic/4k-Black-Wallpaper-For-Mobile.jpg");
+  background-size: contain;
+  backdrop-filter: blur(10px);
+}
+
+.overflowArea {
+  /* 區塊 */
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+}
+
+.diy-modal-background {
+  /* 排版 */
+  display: none;
+  position: fixed;
+  z-index: 2999;
+  top: 0;
+  left: 0;
+  /* 區塊 */
+  padding-top: 25vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.diy-modal {
+  /* 排版 */
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  /* 區塊 */
+  padding-right: 20px;
+  margin: auto;
+  max-width: 600px;
+  min-height: 300px;
+  border-radius: 10px;
+}
+
+#box-img {
+  /* 排版 */
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  /* 區塊 */
+  border-radius: 5px;
+}
+
+#box-email {
+  /* 排版 */
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#box-name {
+  /* 排版 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  /* 內容 */
+  color: white;
+  font-family: "Brush Script MT",
+    "Brush Script Std",
+    cursive;
+}
+
+#box-gender {
+  /* 排版 */
+  display: flex;
+  align-items: center;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#box-age {
+  /* 排版 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#box-region {
+  /* 排版 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#box-birthday {
+  /* 排版 */
+  display: flex;
+  align-items: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.diy-modal-text {
+  /* 內容 */
+  color: white;
+  font-family: "OCR A Std",
+    monospace;
+}
+
+#email-icon {
+  /* 區塊 */
+  height: 30px;
+  width: 52px;
+}
+
+.icon {
+  /* 區塊 */
+  height: 30px;
+  width: 30px;
+}
+
+.page-icon {
+  /* 區塊 */
+  height: 50px;
+  border-radius: 50%;
+}
+
+.close-button {
+  /* 排版 */
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  /* 內容 */
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "OCR A Std",
+    monospace;
+  cursor: pointer;
+}
+
+.container {
+  /* 排版 */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  column-gap: 3vw;
+  row-gap: 2vh;
+}
+
+/* 每一隊的 container */
+.team {
+  /* 排版 */
+  position: relative;
+  z-index: 0;
+  /* 區塊 */
+  border-radius: 8px;
+  height: 300px;
+}
+
+/* 每一隊的白色圖片 */
+.member-container {
+  /* 排版 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* 區塊 */
+  margin-left: 5%;
+  margin-top: 5%;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 80%;
+  width: 90%;
+}
+
+.member {
+  /* 區塊 */
+  width: 18%;
+}
+
+.player-name {
+  /* 排版 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 區塊 */
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5%;
+  height: 10px;
+  /* 內容 */
+  color: rgba(255, 255, 255, 1);
+  font-size: 50%;
+  font-family: "Brush Script MT",
+    "Brush Script Std",
+    cursive;
+}
+
+.team-name {
+  /* 排版 */
+  position: absolute;
+  top: 11%;
+  left: 8%;
+  z-index: 1;
+  /* 內容 */
+  font-family: "Stencil Std", fantasy;
+}
+
+.page-container {
+  /* 排版 */
+  position: absolute;
+  bottom: 1vh;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  /* 區塊 */
+  padding: auto;
+  margin-left: -54px;
+}
+
+.page-element {
+  /* 排版 */
+  z-index: 2;
+  /* 區塊 */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("./pic/images.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  /* 內容 */
+  text-align: center;
+  color: white;
+}
+
+.heart {
+  /* 區塊 */
+  height: 20px;
+}
+
+.heart-container {
+  /* 排版 */
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1500px) {
+  .team {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .team {
+    height: 200px;
+  }
+
+  .team-name {
+    top: 6%;
+    left: 6%;
+  }
+
+  .play-name {
+    font-size: 12px;
+  }
+
+  .card-text {
+    transform: scale(0.833333);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .team {
+    height: 150px;
+  }
+
+  .team-name {
+    transform: scale(0.66);
+    top: 2%;
+    left: 0;
+  }
+
+  .card-text {
+    transform: scale(0.66);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .team {
+    height: 250px;
+  }
+
+  .team-name {
+    transform: scale(1);
+    top: 7%;
+    left: 7%;
+  }
+
+  #box-email {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #box-img {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-top: -10px;
+    margin-left: -10px;
+    transform: scale(0.5);
+  }
+
+  #email-text {
+    transform: scale(0.8);
+  }
+
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card-text {
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .team {
+    height: 200px;
+  }
+
+  .card-text {
+    transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .team {
+    height: 150px;
+  }
+
+  .team-name {
+    transform: scale(0.5);
+    top: 1.7%;
+    left: 0%;
+  }
+
+  .card-text {
+    transform: scale(0.6);
+  }
+}
