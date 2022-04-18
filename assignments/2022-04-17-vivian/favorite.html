@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My Friend List</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">
+              Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./favorite.html">Favorite</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Search Bar -->
+      <form class="row row-cols-lg-auto g-3 align-items-center mb-2" id="search-form">
+        <div class="d-flex">
+          <label class="visually-hidden" for="search-input">
+            Search Keyword
+          </label>
+          <input type="text" class="form-control" id="search-input" placeholder="search" />
+          <button type="submit" class="material-icons-outlined search-icon material-icons" id="search-submit-button">
+            search
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </nav>
+
+  <!-- container -->
+  <div class="container mt-5">
+    <div class="row" id="data-panel">
+      
+    </div>
+  </div>
+
+
+  <!-- User Modal -->
+  <div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body w-100 mb-5" id="user-modal-body">
+          <!-- 彈出視窗 -->
+          <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="d-flex justify-content-around align-items-center">
+            <div id="user-modal-img">
+              <img src="" alt="user-img" class="img-fluid">
+            </div>
+            <div>
+              <div class="info-name fw-bold" id="user-modal-name">name</div>
+              <div class="d-flex">
+                <span class="material-icons-outlined material-icons">mail</span>
+                <span class="ps-2" id="user-modal-email">email</span>
+              </div>
+              <div class="d-flex">
+                <span class="material-icons-outlined material-icons">location_on</span>
+                <span class="ps-2" id="user-modal-region">region</span>
+              </div>
+              <div class="d-flex">
+                <span class="material-icons-outlined material-icons">cake</span>
+                <span class="ps-2" id="user-modal-birthday">birthday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 要注意要先引用 axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- 再載入 bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!-- 最後再載入自己的 script -->
+  <script src="./favorite.js"></script>
+</body>
+
+</html>
