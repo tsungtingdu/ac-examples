@@ -1,0 +1,52 @@
+.card {
+  border-radius: 1.25rem;
+}
+.card-title {
+  height: 40px;
+}
+
+.card-tap:hover {
+  cursor: pointer;
+}
+
+.btn-add-favorite {
+  font-family: 'Material Icons';
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  color: red;
+  font-size: 24px;
+}
+.btn-add-favorite:hover {
+  cursor: pointer;
+}
+.btn-remove-favorite {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.material-icons {
+  font-family: 'Material Icons';
+}
+
+.search-icon {
+  border-style: unset;
+  margin-left: 5px;
+}
+
+.gender {
+  font-size: 24px;
+  text-align: center;
+  display: block;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+.info-name {
+  font-size: 30px;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 20px;
+}
