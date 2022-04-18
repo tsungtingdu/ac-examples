@@ -1,0 +1,476 @@
+/* CSS reset */
+/* 載入字型 */
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=PT+Sans:wght@400;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  color: #2b2b2b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fff;
+  font-family: "PT Sans", sans-serif; /* 設定字型 */
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  line-height: 0.9;
+}
+p {
+  margin: 0;
+}
+ul,
+li {
+  list-style-type: none; /* 拿掉前方圈圈 */
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none; /* 拿掉底線 */
+}
+
+/* ★★★★★ 共用設定 ★★★★★ */
+
+/*《《《《《 手機版 》》》》》 */
+/* ★★★★★ Main Header ★★★★★ */
+header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  background: #fff;
+  opacity: 0.95;
+/*   -webkit-box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1); */
+}
+
+/* 導覽列 */
+.nav {
+  /* 以 header 為父層定位 */
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  background: #fff;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 0.3s ease-out;
+}
+
+.navbar-toggle {
+  /* 不佔空間，準確對齊 */
+  position: absolute;
+  /* 隱藏 checkbox */
+  visibility: hidden;
+}
+
+/* 漢堡選單-點擊效果 */
+/* ~ 代表選取後面一個物件 */
+.navbar-toggle:checked ~ .nav {
+  /* 被點擊後 scale ( x 軸 , y 軸 ) 顯示畫面 */
+  transform: scale(1, 1);
+}
+
+.navbar-toggle:checked ~ .nav .nav-item {
+  /* 增加轉場效果 ( 透明度、持續發生時間、緩出、先延遲多久後開始 ) */
+  transition: opacity 0.2s ease-out 0.15s;
+  /* 開啟時透明度為 1 */
+  opacity: 1;
+}
+
+/* 漢堡定位，以 header 為父層定位 */
+.navbar-toggle-label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7.5%;
+  display: flex;
+  align-items: center;
+}
+
+/* 製作漢堡 icon */
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  width: 30px;
+  height: 3px;
+  background: #2b2b2b;
+}
+
+/* 製作漢堡 icon 的父層定位 */
+.hamburger {
+  position: relative;
+}
+
+.hamburger::before,
+.hamburger::after {
+  /* 參考父層 .hamburger 來定位 */
+  position: absolute;
+  /* 齊左對齊 */
+  left: 0;
+  /* 給偽元素一個存放空間 */
+  content: "";
+}
+
+.hamburger::before {
+  top: 8px;
+}
+
+.hamburger::after {
+  bottom: 8px;
+}
+
+.nav-item {
+  padding: 1rem;
+}
+
+.nav-link {
+  color: #2b2b2b;
+}
+
+/* Navbar-Brand */
+.navbar-brand-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  color: #2b2b2b;
+}
+
+.navbar-brand-img {
+  width: 40px;
+  height: 40px;
+}
+
+.navbar-brand-text {
+  padding: 0 0 0 10px;
+}
+
+.navbar-brand-text span {
+    position: absolute;
+    font-size: 0.1rem;
+    padding-left: 2px;
+  }
+
+/* Navbar-Feature */
+.navbar-feature {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 7.5%;
+  display: flex;
+  align-items: center;
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+/* ★★★★★ Container ★★★★★ */
+.container-wrapper {
+  width: 85%;
+  margin: 0 auto;
+  padding-top: 92px;
+}
+
+.categore-title {
+  font-size: 36px;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+/* Categore-Wrapper */
+.categore-dropdown-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+}
+
+.categore-dropdown {
+  width: 200px;
+  height: 2.5rem;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  
+  margin: 5px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ★★★★★ Commodity ★★★★★ */
+.commodity-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* 隱藏過大的圖片 */
+  overflow: hidden;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-img-container {
+  position: relative;
+}
+
+.card-img,
+.card-img-hover {
+  display: block;
+  width: 100%;
+  /* 固定 1:1 讓照片保持正方形 */
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;
+  transition: opacity 0.3s ease-out;
+}
+
+.card-img {
+  opacity: 1;
+}
+
+.card-img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card-img:hover {
+  opacity: 0;
+}
+
+.card-img-hover:hover {
+  opacity: 1;
+}
+
+.card-favorite {
+  position: absolute;
+  z-index: 99;
+  top: 6%;
+  right: 10%;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 8px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-price {
+  font-weight: 700;
+}
+
+/* ★★★★★ Pagination ★★★★★ */
+.pagination {
+  padding: 2rem;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* ★★★★★ Subscription ★★★★★ */
+.subscription-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden
+}
+
+.subscription-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 350px;
+  
+  object-fit: cover;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.subscription-title {
+  font-size: 24px;
+  font-weight: 700;
+  padding: 40px 0 30px 0;
+  text-align: center;
+}
+
+.subscription-input-container {
+  width: 85%;
+  background: #fff;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscription-input,
+.subscription-submit {
+  all: unset;
+  height: 25px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 100%;
+  text-align: center;
+  padding: 10px 15px;
+}
+
+.subscription-input {
+  width: 85%;
+  background: #fff;
+  border-radius: 25px;
+}
+
+.subscription-submit {
+  min-width: 90px;
+  font-weight: 700;
+  color: #fff;
+  background: #000;
+  border-radius: 0 25px 25px 0;
+}
+
+.subscription-policy {
+  font-size: 13px;
+  margin: 20px 0 30px 0;
+}
+
+.subscription-policy a {
+  text-decoration: underline;
+  color: #2b2b2b;
+}
+
+/* ★★★★★ Footer ★★★★★ */
+footer {
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+  font-size: 13px;
+  background-color: #f0f0f0;
+}
+
+/*《《《《《 桌機版 》》》》》 */
+@media screen and (min-width: 768px) {
+  /* ★★★★★ Main Header ★★★★★ */
+  header {
+  padding: 0 7.5%;
+  display: grid; 
+  grid-template-columns: 1fr minmax(200px, 1fr) 1fr;
+}
+  
+  /* 隱藏漢堡排 */
+  .navbar-toggle-label {
+    display: none;
+  }
+  
+   .navbar-brand-wrapper {
+    grid-column: 1/2;
+  }
+  
+  .navbar-brand-img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .navbar-brand-text {
+    font-size: 24px;
+  }
+  
+  .nav {
+    all: unset;
+    grid-column: 2/3;
+}
+  
+  .nav-list {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .nav-item {
+    margin: 0;
+    opacity: 1;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .navbar-brand-link {
+  justify-content: flex-start;
+}
+  
+  /* ★★★★★ Container-wrapper ★★★★★ */  
+  .commodity-wrapper {
+  grid-template-columns: repeat(4, 1fr);
+}
+  
+  .card-text {
+  font-size: 20px;
+}
+  
+  /* ★★★★★ Subscription ★★★★★ */
+  .subscription-input-container {
+  width: 55%;
+}
+  
+  .subscription-title {
+  font-size: 30px;
+}
+
+.subscription-input,
+.subscription-submit {
+  font-size: 20px;
+}
+  
+.subscription-submit {
+  min-width: 110px;
+}
+  
+.subscription-policy {
+  font-size: 16px;
+  margin: 20px 0 30px 0;
+}
+  
+  /* ★★★★★ Footer ★★★★★ */
+footer {
+  font-size: 16px;
+}

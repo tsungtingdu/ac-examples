@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - 2-3 / S4 / A14 / Q1: 電商網頁切版</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- ★★★★★ Main Header ★★★★★ -->
+<header>
+  <!-- navbar-brand -->
+  <div class="navbar-brand-wrapper">
+    <a class="navbar-brand-link" href="#">
+      <img class="navbar-brand-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14985/logo-2021.png" alt="">
+      <h3 class="navbar-brand-text">TSHIRT STORE<span>&reg;</span></h3>
+    </a>
+  </div>
+
+  <!-- 漢堡選單 -->
+  <div class="hamburger-wrapper">
+    <input id="navbar-toggle" class="navbar-toggle" type="checkbox">
+
+    <!-- 加上導覽列 -->
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" href="#men">Men</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#women">Women</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#kids">Kids</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 增加 label 標籤與漢堡連動，for 與漢堡 id 相同 -->
+    <label class="navbar-toggle-label" for="navbar-toggle">
+      <!-- 增加span標籤 (漢堡「三」demo效果) -->
+      <span class="hamburger"></span>
+    </label>
+  </div>
+
+  <!-- navbar-feature -->
+  <div class="navbar-feature">
+    <div class="navbar-search">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="navbar-favorite">
+      <i class="far fa-heart"></i>
+    </div>
+    <div class="navbar-cart">
+      <i class="fas fa-shopping-bag"></i>
+    </div>
+  </div>
+
+</header>
+
+<!-- ★★★★★ Container-wrapper ★★★★★ -->
+<div class="container-wrapper">
+  <!-- ★★★★★ Container ★★★★★ -->
+  <section id="categore" class="categore">
+    <div class="container">
+      <h1 class="categore-title">Basic T-shirts</h1>
+
+      <div class="categore-dropdown-wrapper">
+        <div class="categore-dropdown">
+          <p>Size</p>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div class="categore-dropdown">
+          <p>Color</p>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div class="categore-dropdown">
+          <p>Sort</p>
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ★★★★★ Commodity ★★★★★ -->
+  <section id="commodity" class="commodity">
+    <div class="container">
+      <div class="commodity-wrapper">
+
+        <!-- ******************** Card-Group ******************** -->
+        <!-- card-1 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14372/bastian-ignacio-vega-cani-9UAfLTqMoS0-unsplash__2_.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-2 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14365/anomaly-WWesmHEgXDs-unsplash.jpg" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-3 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14374/faith-yarn-hgtWvsq5e2c-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-4 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14373/christian-bolt-VW5VjskNXZ8-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- ******************** Card-Group ******************** -->
+        <!-- card-1 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14372/bastian-ignacio-vega-cani-9UAfLTqMoS0-unsplash__2_.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-2 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14365/anomaly-WWesmHEgXDs-unsplash.jpg" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-3 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14374/faith-yarn-hgtWvsq5e2c-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-4 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14373/christian-bolt-VW5VjskNXZ8-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- ******************** Card-Group ******************** -->
+        <!-- card-1 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14372/bastian-ignacio-vega-cani-9UAfLTqMoS0-unsplash__2_.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-2 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14365/anomaly-WWesmHEgXDs-unsplash.jpg" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-3 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14374/faith-yarn-hgtWvsq5e2c-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-4 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14373/christian-bolt-VW5VjskNXZ8-unsplash.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- ******************** Card-Group ******************** -->
+        <!-- card-1 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14372/bastian-ignacio-vega-cani-9UAfLTqMoS0-unsplash__2_.png" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+        <!-- card-2 -->
+        <div class="card">
+          <div class="card-favorite">
+            <i class="far fa-heart"></i>
+          </div>
+
+          <div class="card-img-container">
+            <img class="card-img" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14362/t-shirt.png" alt="">
+            <img class="card-img-hover" src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14365/anomaly-WWesmHEgXDs-unsplash.jpg" alt="">
+          </div>
+
+          <div class="card-text">
+            <p class="card-description">T-shirt Stockholm Base Leaf Green</p>
+            <p class="card-price">29.00 USD</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ★★★★★ Pagination ★★★★★ -->
+  <div class="pagination">
+    <p>14 / 14</p>
+  </div>
+
+  <!-- ★★★★★ Subscription ★★★★★ -->
+  <section id="subscription" class="subscription">
+    <div class="subscription-wrapper">
+
+      <div class="subscription-img">
+        <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/14376/template.png" alt="">
+      </div>
+
+      <p class="subscription-title">
+        Get the T-shirt drops in your inbox! Sign up for our Newsletter.
+      </p>
+
+      <form class="subscription-input-container" action="">
+        <input class="subscription-input" type="text" placeholder="Enter email for news updates" name="subscription-input">
+        <input class="subscription-submit" type="submit" value="SIGN UP!">
+      </form>
+
+      <p class="subscription-policy">
+        By registering you adree with our
+        <a href="#">Integrity Policy</a>
+      </p>
+
+    </div>
+  </section>
+</div>
+
+<!-- ★★★★★ footer ★★★★★ -->
+<footer>
+  <p>&copy;2021 Tshirt Store.All right reserved.</p>
+</footer>
+<!-- partial -->
+  
+</body>
+</html>
